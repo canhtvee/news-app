@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NewsApp</string>
+    <string name="home">Top News</string>
+    <string name="explore">Explore</string>
+    <string name="headline">Headline</string>
+    <string name="following">Following</string>
+    <string name="mediator">Mediator</string>
+    <string name="business">Business</string>
+    <string name="technology">Technology</string>
+    <string name="startup">Startup</string>
+    <string name="science">Science</string>
+    <string name="life">Life</string>
+    <string name="search">Search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
