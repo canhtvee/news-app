@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -41,9 +42,11 @@ class ExploreFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recyclerView = view.findViewById<RecyclerView>(R.id.exploreRecyclerView)
+        val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
+        toolbarTitle.text = resources.getString(R.string.explore)
 
-        exploreViewModel.data.observe(viewLifecycleOwner, Observer { resource ->
+        val recyclerView = view.findViewById<RecyclerView>(R.id.exploreRecyclerView)
+        exploreViewModel.data.observe(viewLifecycleOwner, { resource ->
             when (resource) {
                 is Resource.Loading -> {
                     Toast.makeText(view.context, "Loading...", Toast.LENGTH_LONG).show()

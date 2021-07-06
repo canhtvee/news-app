@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="following_source_icons">
+        <item>@drawable/wired</item>
+        <item>@drawable/the_wall_street_journal</item>
+        <item>@drawable/the_verge</item>
+        <item>@drawable/the_next_web</item>
+        <item>@drawable/techradar</item>
+        <item>@drawable/techcrunch</item>
+        <item>@drawable/talksport</item>
+        <item>@drawable/recode</item>
+        <item>@drawable/new_scientist</item>
+        <item>@drawable/hacker_news</item>
+        <item>@drawable/fox_sports</item>
+        <item>@drawable/fortune</item>
+        <item>@drawable/espn</item>
+        <item>@drawable/engadget</item>
+        <item>@drawable/business_insider</item>
+    </array>
+    <!--<array name="following_source_names">
+        <item>@string/wired</item>
+        <item>@string/the_wall_street_journal</item>
+        <item>@string/the_verge</item>
+        <item>@string/the_next_web</item>
+        <item>@string/techradar</item>
+        <item>@string/techcrunch</item>
+        <item>@string/talksport</item>
+        <item>@string/recode</item>
+        <item>@string/new_scientist</item>
+        <item>@string/hacker_news</item>
+        <item>@string/fox_sports</item>
+        <item>@string/fortune</item>
+        <item>@string/espn</item>
+        <item>@string/engadget</item>
+        <item>@string/business_insider</item>
+    </array>-->
+</resources>

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.newsapp.R
 import com.example.newsapp.adapters.HeadlineFragmentAdapter
@@ -32,6 +33,8 @@ class HeadlineFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
+        toolbarTitle.text = resources.getString(R.string.headline)
 
         val viewPager = view.findViewById<ViewPager2>(R.id.pager)
         viewPager.adapter = HeadlineFragmentAdapter(this)

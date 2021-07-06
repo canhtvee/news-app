@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/main_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
@@ -61,6 +61,4 @@
 
 
     <include app:graph="@navigation/home_nav_graph" />
-
-
 </navigation>

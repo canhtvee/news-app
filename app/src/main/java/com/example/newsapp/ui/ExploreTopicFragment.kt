@@ -3,6 +3,7 @@ package com.example.newsapp.ui
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -29,8 +30,12 @@ class ExploreTopicFragment: Fragment(R.layout.fragment_explore_topic) {
     lateinit var webViewModel: WebViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
+        toolbarTitle.text = exploreViewModel.selectedTag
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.exploreTopicRecyclerView)
-        exploreViewModel.data.observe(viewLifecycleOwner, Observer { resource ->
+        exploreViewModel.data.observe(viewLifecycleOwner, { resource ->
+
             when (resource) {
                 is Resource.Loading -> {
                     Toast.makeText(view.context, "Loading...", Toast.LENGTH_LONG).show()

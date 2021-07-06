@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.Navigation
 import com.example.newsapp.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,11 +24,14 @@ class MediatorFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
+//        toolbarTitle.text = resources.getString(R.string.mediator)
+
         val mainNavController = Navigation.findNavController(requireActivity(),
             R.id.nav_host_fragment_container
         )
-        val meditatorFragmentButton = view.findViewById<Button>(R.id.meditatorFragmentButton)
-        meditatorFragmentButton.setOnClickListener {
+        val mediatorFragmentButton = view.findViewById<Button>(R.id.meditatorFragmentButton)
+        mediatorFragmentButton.setOnClickListener {
             mainNavController.navigate(R.id.action_global_to_webViewFragment)
         }
     }

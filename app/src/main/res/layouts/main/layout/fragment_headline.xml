@@ -9,7 +9,6 @@
     tools:context=".ui.home.HeadlineFragment">
 
     <include
-        android:id="@+id/headline_bar"
         layout="@layout/layout_appbar_tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

@@ -3,7 +3,8 @@ package com.example.newsapp.utils
 data class SourcePlanning(
 
     val tagList: List<String> = listOf<String>(
-        "apple", "android", "huawei", "tesla", "bitcoin", "facebook", "twitter"),
+        "apple", "android", "huawei", "tesla", "bitcoin", "facebook", "twitter"
+    ),
 
     val techSources: List<String> = listOf<String>(
         "engadget",
@@ -15,7 +16,7 @@ data class SourcePlanning(
         "the-verge",
         "wired",
 
-    ),
+        ),
 
     val businessSources: List<String> = listOf<String>(
         "business-insider",

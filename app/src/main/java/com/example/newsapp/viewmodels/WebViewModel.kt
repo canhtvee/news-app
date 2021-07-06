@@ -7,7 +7,7 @@ import com.example.newsapp.data.models.Article
 
 class WebViewModel : ViewModel(){
 
-    val _viewData = MutableLiveData<Article>()
+    private val _viewData = MutableLiveData<Article>()
     val viewData: LiveData<Article> = _viewData
 
     fun setViewData(article: Article){

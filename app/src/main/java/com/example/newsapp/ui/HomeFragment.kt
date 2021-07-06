@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.newsapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
+import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +21,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val navHostFragment = childFragmentManager.findFragmentById(R.id.home_nav_host_fragment_container) as NavHostFragment
         val localNavController = navHostFragment.findNavController()
         val bottomNav = view.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-            .apply { labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED }
+            .apply { labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED }
         NavigationUI.setupWithNavController(bottomNav, localNavController)
 
     }
