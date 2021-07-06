@@ -48,6 +48,7 @@ class FollowingFragment : Fragment() {
                 sourceClickHandler(it)
             }
             hasFixedSize()
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }
     }
 
