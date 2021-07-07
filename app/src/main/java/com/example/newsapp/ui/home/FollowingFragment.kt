@@ -18,12 +18,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.adapters.SourceRecyclerViewAdapter
+import com.example.newsapp.data.models.Article
 import com.example.newsapp.utils.SourcePlanning
+import com.example.newsapp.viewmodels.ExploreTopicViewModel
+import com.example.newsapp.viewmodels.HeadlineViewModel
+import com.example.newsapp.viewmodels.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class FollowingFragment : Fragment() {
+
+    @Inject
+    lateinit var exploreTopicViewModel: ExploreTopicViewModel
+
+    @Inject
+    lateinit var webViewModel: WebViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,14 +55,16 @@ class FollowingFragment : Fragment() {
         followingRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = SourceRecyclerViewAdapter(sourceIcons){
-                sourceClickHandler(it)
+                onSourceItemClick(it)
             }
             hasFixedSize()
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }
     }
 
-    private fun sourceClickHandler(source: String){
-        Log.d("CLICK EVENT", source)
+    private fun onSourceItemClick(sourceId: String){
+        exploreTopicViewModel.setTopicDataBySource(sourceId)
+        val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
+        mainNavController.navigate(R.id.action_global_to_exploreTopicFragment)
     }
 }

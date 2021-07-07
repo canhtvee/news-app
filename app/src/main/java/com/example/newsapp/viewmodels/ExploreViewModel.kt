@@ -13,15 +13,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExploreViewModel @Inject constructor(
-    private val homeRepository: HomeRepository
+    val homeRepository: HomeRepository
 ) : ViewModel() {
 
     var data: LiveData<Resource<List<Article>>> = homeRepository.getTagsHeadline()
         .asLiveData(viewModelScope.coroutineContext)
 
-    var selectedTag: String? = null
-
-    fun setTag(tag: String) {
-        selectedTag = tag
-    }
 }

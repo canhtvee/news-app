@@ -18,6 +18,7 @@ import com.example.newsapp.adapters.OuterRecyclerViewAdapter
 import com.example.newsapp.data.models.Article
 import com.example.newsapp.utils.Resource
 import com.example.newsapp.utils.SourcePlanning
+import com.example.newsapp.viewmodels.ExploreTopicViewModel
 import com.example.newsapp.viewmodels.ExploreViewModel
 import com.example.newsapp.viewmodels.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,9 @@ class ExploreFragment : Fragment() {
 
     @Inject
     lateinit var exploreViewModel: ExploreViewModel
+
+    @Inject
+    lateinit var exploreTopicViewModel: ExploreTopicViewModel
 
     @Inject
     lateinit var webViewModel: WebViewModel
@@ -73,8 +77,8 @@ class ExploreFragment : Fragment() {
         })
     }
 
-    private fun onOuterItemClick(tag: String){
-        exploreViewModel.setTag(tag)
+    private fun onOuterItemClick(topicData: List<Article>){
+        exploreTopicViewModel.setTopicData(topicData)
         val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
         mainNavController.navigate(R.id.action_global_to_exploreTopicFragment)
     }

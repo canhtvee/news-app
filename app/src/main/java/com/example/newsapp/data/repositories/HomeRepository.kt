@@ -1,6 +1,8 @@
 package com.example.newsapp.data.repositories
 
+import androidx.lifecycle.LiveData
 import com.example.newsapp.data.local.ArticleDao
+import com.example.newsapp.data.models.Article
 import com.example.newsapp.data.remote.ArticleRemoteDataSource
 import com.example.newsapp.utils.SourcePlanning
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +22,8 @@ class HomeRepository @Inject constructor(
     suspend fun deleteByTags(tags : List<String>) {
         withContext(Dispatchers.IO) { articleLocalDataSource.deleteByTags(tags )}
     }
+
+    fun loadBySource(sourceId: String) = articleLocalDataSource.loadBySource(sourceId).flowOn(Dispatchers.IO)
 
     fun getTagsHeadline() = performGetOperation2(
         getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(sourcePlanning.tagList) },

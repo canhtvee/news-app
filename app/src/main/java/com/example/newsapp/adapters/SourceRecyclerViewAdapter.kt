@@ -12,7 +12,7 @@ import com.example.newsapp.R
 
 class SourceRecyclerViewAdapter(
     private val sourceIcons: TypedArray,
-    val ItemClickHandler: (String) -> Unit
+    val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<SourceRecyclerViewAdapter.ViewHolder>() {
 
     val sourceNames = listOf<String>(
@@ -32,6 +32,25 @@ class SourceRecyclerViewAdapter(
         "Engadget",
         "Business Insider",
     )
+
+    val sourceIds = listOf<String>(
+        "wired",
+        "the-wall-street-journal",
+        "the-verge",
+        "the-next-web",
+        "techradar",
+        "techcrunch",
+        "talksport",
+        "recode",
+        "new-scientist",
+        "hacker-news",
+        "fox-sports",
+        "fortune",
+        "espn",
+        "engadget",
+        "business-insider",
+    )
+
     class ViewHolder(view: View,
                      onItemClicked: (Int) -> Unit) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.findViewById(R.id.grid_item_view_textView)
@@ -47,7 +66,7 @@ class SourceRecyclerViewAdapter(
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.following_source_item_view, viewGroup, false)
         return ViewHolder(view) {
-            ItemClickHandler(sourceNames[it])
+            onItemClick(sourceIds[it])
         }
     }
 
