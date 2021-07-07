@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class  OuterRecyclerViewAdapter(
     private val data: List<Article>,
-    private val outerItemClickHandler: (List<Article>) -> Unit,
+    private val outerItemClickHandler: (String) -> Unit,
     private val innerItemClickHandler: (Article) -> Unit
 ) : RecyclerView.Adapter<OuterRecyclerViewAdapter.ViewHolder>() {
 
@@ -36,9 +36,8 @@ class  OuterRecyclerViewAdapter(
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.outer_item_view, viewGroup, false)
-        val viewHolder = ViewHolder(view) { position ->
-            val topicData = data.filter { it.content.equals(activeTags[position])}
-            outerItemClickHandler(topicData)
+        val viewHolder = ViewHolder(view) {
+            outerItemClickHandler(activeTags[it])
         }
         val helper = PagerSnapHelper()
         helper.attachToRecyclerView(viewHolder.innerRecyclerView)

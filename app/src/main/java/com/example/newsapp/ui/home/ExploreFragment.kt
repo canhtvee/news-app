@@ -77,8 +77,8 @@ class ExploreFragment : Fragment() {
         })
     }
 
-    private fun onOuterItemClick(topicData: List<Article>){
-        exploreTopicViewModel.setTopicData(topicData)
+    private fun onOuterItemClick(tag: String){
+        exploreTopicViewModel.fetTagHeadline(tag)
         val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
         mainNavController.navigate(R.id.action_global_to_exploreTopicFragment)
     }

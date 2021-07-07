@@ -1,9 +1,7 @@
 package com.example.newsapp.di
 
-import androidx.navigation.Navigation
-import com.example.newsapp.MainActivity
-import com.example.newsapp.R
 import com.example.newsapp.adapters.ImageBindingAdapter
+import com.example.newsapp.data.repositories.ExploreTopicRepository
 import com.example.newsapp.data.repositories.HeadlineRepository
 import com.example.newsapp.data.repositories.HomeRepository
 import com.example.newsapp.utils.SourcePlanning
@@ -44,7 +42,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideExploreTopicViewModel(homeRepository: HomeRepository
-    ): ExploreTopicViewModel = ExploreTopicViewModel(homeRepository)
+    fun provideExploreTopicViewModel(exploreTopicRepository: ExploreTopicRepository
+    ): ExploreTopicViewModel = ExploreTopicViewModel(exploreTopicRepository)
 
 }

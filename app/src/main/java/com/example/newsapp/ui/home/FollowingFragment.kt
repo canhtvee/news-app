@@ -63,7 +63,7 @@ class FollowingFragment : Fragment() {
     }
 
     private fun onSourceItemClick(sourceId: String){
-        exploreTopicViewModel.setTopicDataBySource(sourceId)
+        exploreTopicViewModel.fetchSourceHeadline(sourceId)
         val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
         mainNavController.navigate(R.id.action_global_to_exploreTopicFragment)
     }

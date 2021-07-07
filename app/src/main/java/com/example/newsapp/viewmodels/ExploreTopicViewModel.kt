@@ -2,19 +2,22 @@ package com.example.newsapp.viewmodels
 
 import androidx.lifecycle.*
 import com.example.newsapp.data.models.Article
-import com.example.newsapp.data.repositories.HomeRepository
+import com.example.newsapp.data.repositories.ExploreTopicRepository
+import com.example.newsapp.utils.Resource
 import javax.inject.Inject
 
 class ExploreTopicViewModel @Inject constructor(
-    val homeRepository: HomeRepository
+    private val exploreTopicRepository: ExploreTopicRepository
 ) : ViewModel() {
-    private val _topicData = MutableLiveData<List<Article>>()
-    var topicData: LiveData<List<Article>> = _topicData
 
-    fun setTopicData(articles: List<Article>){
-        _topicData.value = articles
+    lateinit var topicData: LiveData<Resource<List<Article>>>
+
+    fun fetchSourceHeadline(sourceId: String) {
+        topicData = exploreTopicRepository.getSourceHeadline(sourceId).asLiveData(viewModelScope.coroutineContext)
     }
-    fun setTopicDataBySource(sourceId: String){
-        topicData = homeRepository.loadBySource(sourceId).asLiveData(viewModelScope.coroutineContext)
+
+    fun fetTagHeadline(tag: String) {
+        topicData = exploreTopicRepository.getTagHeadline(tag).asLiveData(viewModelScope.coroutineContext)
     }
+
 }
