@@ -22,6 +22,7 @@ import com.example.newsapp.viewmodels.ExploreTopicViewModel
 import com.example.newsapp.viewmodels.ExploreViewModel
 import com.example.newsapp.viewmodels.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.annotation.meta.When
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -78,6 +79,17 @@ class ExploreFragment : Fragment() {
     }
 
     private fun onOuterItemClick(tag: String){
+        val toolbarTitle =  when (tag) {
+            "apple" -> "Apple News"
+            "android" -> "Android News"
+            "huawei" -> "Huawei News"
+            "tesla" -> "Tesla News"
+            "bitcoin" -> "Bitcoin News"
+            "facebook" -> "Facebook News"
+            else -> "Twitter News"
+        }
+
+        exploreTopicViewModel.tag = toolbarTitle
         exploreTopicViewModel.fetTagHeadline(tag)
         val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
         mainNavController.navigate(R.id.action_global_to_exploreTopicFragment)

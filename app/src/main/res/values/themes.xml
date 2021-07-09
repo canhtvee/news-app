@@ -45,10 +45,9 @@
     <style name="MyTheme.BottomNavigation" parent = "Widget.MaterialComponents.BottomNavigationView.Colored">
         <item name="itemIconTint">@color/bottom_nav_item_color</item>
         <item name="itemTextColor">@color/bottom_nav_item_color</item>
-        <item name="itemIconSize">20dp</item>
         <item name="itemTextAppearanceInactive">@style/MyTheme.BottomNavigationTextAppearance</item>
         <item name="itemTextAppearanceActive">@style/MyTheme.BottomNavigationTextAppearance</item>
-        <item name="elevation">2dp</item>
+        <item name="strokeWidth">4dp</item>
     </style>
 
     <style name="MyTheme.BottomNavigationTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">

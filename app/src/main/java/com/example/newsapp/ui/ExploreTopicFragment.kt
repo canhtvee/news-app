@@ -33,7 +33,7 @@ class ExploreTopicFragment: Fragment(R.layout.fragment_explore_topic) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
-        toolbarTitle.text = "NewsApp"
+        toolbarTitle.text = exploreTopicViewModel.tag
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.exploreTopicRecyclerView)
 

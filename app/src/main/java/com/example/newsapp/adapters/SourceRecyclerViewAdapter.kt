@@ -12,7 +12,7 @@ import com.example.newsapp.R
 
 class SourceRecyclerViewAdapter(
     private val sourceIcons: TypedArray,
-    val onItemClick: (String) -> Unit
+    val onItemClick: (String, String) -> Unit
 ) : RecyclerView.Adapter<SourceRecyclerViewAdapter.ViewHolder>() {
 
     val sourceNames = listOf<String>(
@@ -64,9 +64,9 @@ class SourceRecyclerViewAdapter(
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.following_source_item_view, viewGroup, false)
+            .inflate(R.layout.source_item_view, viewGroup, false)
         return ViewHolder(view) {
-            onItemClick(sourceIds[it])
+            onItemClick(sourceIds[it], sourceNames[it])
         }
     }
 

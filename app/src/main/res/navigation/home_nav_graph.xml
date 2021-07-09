@@ -16,14 +16,9 @@
         tools:layout="@layout/fragment_headline"
         android:label="fragment_headline" />
     <fragment
-        android:id="@+id/meditatorFragment"
-        android:name="com.example.newsapp.ui.home.MediatorFragment"
-        tools:layout="@layout/fragment_mediator"
-        android:label="fragment_meditator" />
-    <fragment
         android:id="@+id/followingFragment"
-        android:name="com.example.newsapp.ui.home.FollowingFragment"
+        android:name="com.example.newsapp.ui.home.Mediator"
         android:label="fragment_following"
-        tools:layout="@layout/fragment_following"/>
+        tools:layout="@layout/fragment_mediator"/>
 
 </navigation>

@@ -12,6 +12,8 @@ class ExploreTopicViewModel @Inject constructor(
 
     lateinit var topicData: LiveData<Resource<List<Article>>>
 
+    var tag: String? = null
+
     fun fetchSourceHeadline(sourceId: String) {
         topicData = exploreTopicRepository.getSourceHeadline(sourceId).asLiveData(viewModelScope.coroutineContext)
     }
