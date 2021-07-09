@@ -58,7 +58,7 @@
     <style name="MyTheme.Card" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">8dp</item>
         <item name="strokeColor">@color/color_primary_variant</item>
-        <item name="strokeWidth">1dp</item>
+        <item name="strokeWidth">0dp</item>
     </style>
 
     <style name="MyTheme.ImageView" parent="ShapeAppearance.MaterialComponents.SmallComponent">
