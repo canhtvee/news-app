@@ -8,8 +8,8 @@ class ArticleRemoteDataSource @Inject constructor(
     private val articleService: ArticleService
 ): BaseRemoteDataSource() {
 
-    private val API_KEY: String = "72c24663e06140ae915f4a103374c000"
-    // private val API_KEY: String = "40c0eda347094331862d35f3bcc45da8"
+    //private val API_KEY: String = "72c24663e06140ae915f4a103374c000"
+    private val API_KEY: String = "40c0eda347094331862d35f3bcc45da8"
 
     suspend fun getArticleBySource(source: String) = getResult {
         articleService.getNewsBySource(source, API_KEY) }

@@ -13,8 +13,6 @@ abstract class BaseRemoteDataSource {
     protected suspend fun getResult2(content: String, call: suspend () -> Response<ApiResponse>): Resource<ApiResponse> {
         try {
             val response = call()
-            Log.d("BaseRemoteDataSource", response.toString())
-            Log.d("RESPONSE", response.toString())
             if (response.isSuccessful) {
                 val body = response.body()
                 body?.let {

@@ -20,7 +20,7 @@ class ExploreTopicRepository @Inject constructor(
     fun getTagHeadline(tag: String) = performGetOperation2(
         getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(listOf(tag)) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
-        getDataFromLocalSource = { articleLocalDataSource.loadByContent(listOf(tag))}
+        getDataFromLocalSource = { articleLocalDataSource.loadByTags(listOf(tag))}
     ).flowOn(Dispatchers.IO)
 
 }

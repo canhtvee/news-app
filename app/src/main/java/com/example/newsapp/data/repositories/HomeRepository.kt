@@ -1,8 +1,6 @@
 package com.example.newsapp.data.repositories
 
-import androidx.lifecycle.LiveData
 import com.example.newsapp.data.local.ArticleDao
-import com.example.newsapp.data.models.Article
 import com.example.newsapp.data.remote.ArticleRemoteDataSource
 import com.example.newsapp.utils.SourcePlanning
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +26,7 @@ class HomeRepository @Inject constructor(
     fun getTagsHeadline() = performGetOperation2(
         getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(sourcePlanning.tagList) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
-        getDataFromLocalSource = { articleLocalDataSource.loadByContent(sourcePlanning.tagList) }
+        getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.tagList) }
     ).flowOn(Dispatchers.IO)
 
 

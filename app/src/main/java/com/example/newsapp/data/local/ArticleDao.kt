@@ -23,7 +23,7 @@ interface ArticleDao {
     fun loadByMultiSources(sources: List<String>): Flow<List<Article>>
 
     @Query("SELECT * FROM articles WHERE content IN (:tags)")
-    fun loadByContent(tags: List<String>): Flow<List<Article>>
+    fun loadByTags(tags: List<String>): Flow<List<Article>>
 
     @Query("DELETE FROM articles")
     suspend fun deleteAll()

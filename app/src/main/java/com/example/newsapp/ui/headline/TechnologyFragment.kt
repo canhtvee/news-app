@@ -10,11 +10,14 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.adapters.HeadlineRecyclerViewAdapter
 import com.example.newsapp.R
 import com.example.newsapp.adapters.HeadlineBindingAdapter
 import com.example.newsapp.data.models.Article
+import com.example.newsapp.data.models.Source
 import com.example.newsapp.utils.Resource
+import com.example.newsapp.utils.SourcePlanning
 import com.example.newsapp.viewmodels.HeadlineViewModel
 import com.example.newsapp.viewmodels.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,12 +30,20 @@ class TechnologyFragment : Fragment(R.layout.fragment_technology) {
     lateinit var headlineViewModel: HeadlineViewModel
 
     @Inject
+    lateinit var sourcePlanning: SourcePlanning
+
+    @Inject
     lateinit var webViewModel: WebViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.techRecyclerView)
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.tech_layout_swipe_to_refresh)
+        swipeRefreshLayout.setOnRefreshListener {
+            headlineViewModel.deleteHeadline(sourcePlanning.techSources)
+            headlineViewModel.fetchTech()
+        }
         headlineViewModel.fetchTech()
-        headlineViewModel.techData.observe(viewLifecycleOwner, Observer { resource ->
+        headlineViewModel.techData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
                 .bindHeadline(resource, recyclerView)
         })
