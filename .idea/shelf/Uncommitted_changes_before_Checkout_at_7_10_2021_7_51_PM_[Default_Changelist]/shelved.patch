@@ -1,0 +1,62 @@
+Index: app/src/main/res/layouts/main/layout/fragment_web_view.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.appcompat.widget.LinearLayoutCompat\r\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\"\r\n    tools:context=\".ui.WebViewFragment\">\r\n\r\n    <!-- TODO: Update blank fragment layout -->\r\n    <com.google.android.material.progressindicator.LinearProgressIndicator\r\n        android:id=\"@+id/progressBar\"\r\n        style=\"@style/Widget.MaterialComponents.LinearProgressIndicator\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"4dp\" />\r\n    <WebView\r\n        android:id=\"@+id/webView\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_weight=\"1\"\r\n        />\r\n</androidx.appcompat.widget.LinearLayoutCompat>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layouts/main/layout/fragment_web_view.xml	(revision 9ac241fca5bc1d87f45467ce9e65eb68dccae841)
++++ app/src/main/res/layouts/main/layout/fragment_web_view.xml	(date 1625935666569)
+@@ -8,9 +8,8 @@
+     tools:context=".ui.WebViewFragment">
+ 
+     <!-- TODO: Update blank fragment layout -->
+-    <com.google.android.material.progressindicator.LinearProgressIndicator
++    <ProgressBar
+         android:id="@+id/progressBar"
+-        style="@style/Widget.MaterialComponents.LinearProgressIndicator"
+         android:layout_width="match_parent"
+         android:layout_height="4dp" />
+     <WebView
+Index: app/src/main/java/com/example/newsapp/ui/WebViewFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.newsapp.ui\r\n\r\nimport android.annotation.SuppressLint\r\nimport android.graphics.Bitmap\r\nimport android.os.Bundle\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.webkit.WebChromeClient\r\nimport android.webkit.WebView\r\nimport android.webkit.WebViewClient\r\nimport android.widget.Button\r\nimport android.widget.ProgressBar\r\nimport androidx.fragment.app.activityViewModels\r\nimport androidx.fragment.app.viewModels\r\nimport androidx.lifecycle.Observer\r\nimport androidx.navigation.Navigation\r\nimport com.example.newsapp.R\r\nimport com.example.newsapp.viewmodels.WebViewModel\r\nimport com.google.android.material.progressindicator.LinearProgressIndicator\r\nimport dagger.hilt.android.AndroidEntryPoint\r\nimport javax.inject.Inject\r\n\r\n@AndroidEntryPoint\r\nclass WebViewFragment : Fragment() {\r\n\r\n    @Inject\r\n    lateinit var webViewModel: WebViewModel\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View? {\r\n\r\n        return inflater.inflate(R.layout.fragment_web_view, container, false)\r\n    }\r\n\r\n    @SuppressLint(\"SetJavaScriptEnabled\")\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        val progressBar = view.findViewById<LinearProgressIndicator>(R.id.progressBar)\r\n        val webView = view.findViewById<WebView>(R.id.webView).apply {\r\n            webViewClient = WebViewClient()\r\n            webChromeClient = WebChromeClient()\r\n            settings.javaScriptEnabled = true\r\n        }\r\n\r\n//        webView.webChromeClient = object : WebChromeClient() {\r\n//            override fun onProgressChanged(view: WebView?, newProgress: Int) {\r\n//                super.onProgressChanged(view, newProgress)\r\n//                progressBar.setProgressCompat(70, true)\r\n//            }\r\n//        }\r\n//\r\n//        webView.webViewClient = object : WebViewClient() {\r\n//            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {\r\n//                super.onPageStarted(view, url, favicon)\r\n//                view!!.visibility = View.INVISIBLE\r\n//                progressBar.show()\r\n//            }\r\n//\r\n//            override fun onPageFinished(view: WebView?, url: String?) {\r\n//                super.onPageFinished(view, url)\r\n//                view!!.visibility = View.VISIBLE\r\n//                progressBar.hide()\r\n//            }\r\n//        }\r\n\r\n        webViewModel.viewData.observe(viewLifecycleOwner, {\r\n            webView.loadUrl(it.url)\r\n        })\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/newsapp/ui/WebViewFragment.kt	(revision 9ac241fca5bc1d87f45467ce9e65eb68dccae841)
++++ app/src/main/java/com/example/newsapp/ui/WebViewFragment.kt	(date 1625935666540)
+@@ -40,18 +40,25 @@
+     @SuppressLint("SetJavaScriptEnabled")
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         val progressBar = view.findViewById<LinearProgressIndicator>(R.id.progressBar)
++        progressBar.max = 100
+         val webView = view.findViewById<WebView>(R.id.webView).apply {
+             webViewClient = WebViewClient()
+-            webChromeClient = WebChromeClient()
+             settings.javaScriptEnabled = true
+         }
+ 
+-//        webView.webChromeClient = object : WebChromeClient() {
+-//            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+-//                super.onProgressChanged(view, newProgress)
+-//                progressBar.setProgressCompat(70, true)
+-//            }
+-//        }
++        webView.webChromeClient = object : WebChromeClient() {
++            override fun onProgressChanged(view: WebView?, newProgress: Int) {
++                super.onProgressChanged(view, newProgress)
++
++                if (newProgress == 100) {
++                    progressBar.hide()
++                } else {
++                    progressBar.show()
++                    progressBar.progress = newProgress
++                }
++
++            }
++        }
+ //
+ //        webView.webViewClient = object : WebViewClient() {
+ //            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
