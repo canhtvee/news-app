@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <com.google.android.material.appbar.AppBarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:liftOnScroll="true">
+    app:liftOnScroll="false">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         app:layout_scrollFlags="scroll|enterAlways|snap"
         app:contentInsetStart="0dp"
         app:contentInsetEnd="0dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:orientation="vertical">
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/webViewActionBar"
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:labelVisibilityMode="unlabeled"
-                app:itemIconTint="@color/color_primary_variant"
-                app:menu="@menu/webview_top_menu"
-                />
+                android:layout_height="40dp"
+                app:navigationIcon="@drawable/ic_clear"/>
 
             <ProgressBar
                 android:id="@+id/webViewProgressBar"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="2dp"
                 style="@style/MyTheme.WebViewProgressBar"
                 />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </com.google.android.material.appbar.MaterialToolbar>
 
 </com.google.android.material.appbar.AppBarLayout>
+
+
+

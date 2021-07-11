@@ -42,7 +42,8 @@ android {
                         'src\\main\\res\\drawables\\bottom-nav',
                         'src\\main\\res\\drawables\\itemview',
                         'src\\main\\res\\drawables\\common',
-                        'src\\main\\res\\drawables\\source-icons', 'src\\main\\res\\drawables\\webview'
+                        'src\\main\\res\\drawables\\source-icons',
+                        'src\\main\\res\\drawables\\webview'
 
             }
         }

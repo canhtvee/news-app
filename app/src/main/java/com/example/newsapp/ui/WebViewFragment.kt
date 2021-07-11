@@ -11,10 +11,8 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import android.widget.Toast
 import com.example.newsapp.R
 import com.example.newsapp.viewmodels.WebViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -36,29 +34,10 @@ class WebViewFragment : Fragment() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val progressBar = view.findViewById<ProgressBar>(R.id.webViewProgressBar)
-        progressBar.progress = 0
-        val webViewActionBar = view.findViewById<BottomNavigationView>(R.id.webViewActionBar)
-        webViewActionBar.setOnItemSelectedListener{ item ->
-            when(item.itemId) {
-                R.id.iconClear -> {
-                    Toast.makeText(context, "icon clear", Toast.LENGTH_LONG).show()
-                    true
-                }
-                R.id.iconSave -> {
-                    // Respond to navigation item 2 click
-                    Toast.makeText(context, "icon save", Toast.LENGTH_LONG).show()
-                    true
-                }
-                R.id.iconShare -> {
-                    Toast.makeText(context, "icon share", Toast.LENGTH_LONG).show()
-                    true
-                }
-                else -> {
-                    Toast.makeText(context, "icon refresh", Toast.LENGTH_LONG).show()
-                    false
-                }
+            .apply {
+                progress = 0
+                max = 100
             }
-        }
         val webView = view.findViewById<WebView>(R.id.webView).apply {
             settings.javaScriptEnabled = true
         }
@@ -67,6 +46,11 @@ class WebViewFragment : Fragment() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
                 progressBar.progress = newProgress
+
+                if (newProgress >= 70) {
+                    progressBar.visibility = View.INVISIBLE
+                }
+
             }
         }
 
@@ -78,6 +62,7 @@ class WebViewFragment : Fragment() {
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
+                progressBar.progress = 100
                 progressBar.visibility = View.INVISIBLE
             }
         }
