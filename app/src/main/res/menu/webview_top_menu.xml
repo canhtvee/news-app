@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/iconClear"
+        android:icon="@drawable/ic_clear"
+        android:title="@string/webview_clear"
+        />
+
+    <item
+        android:id="@+id/iconSave"
+        android:icon="@drawable/ic_save"
+        android:title="@string/webview_save"/>
+
+    <item
+        android:id="@+id/iconShare"
+        android:icon="@drawable/ic_share"
+        android:title="@string/webview_share"
+        />
+    <item
+        android:id="@+id/iconRefresh"
+        android:icon="@drawable/ic_refresh"
+        android:title="@string/webview_refresh"
+        />
+</menu>

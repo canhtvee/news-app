@@ -21,6 +21,9 @@
     <string name="engadget">Engadget</string>
     <string name="business_insider">Business Insider</string>
 
-
+    <string name="webview_clear">Close</string>
+    <string name="webview_save">Save</string>
+    <string name="webview_share">Share</string>
+    <string name="webview_refresh">Refresh</string>
 
 </resources>
