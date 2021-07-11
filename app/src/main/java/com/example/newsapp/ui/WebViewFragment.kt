@@ -10,17 +10,11 @@ import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Button
 import android.widget.ProgressBar
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
+import android.widget.Toast
 import com.example.newsapp.R
 import com.example.newsapp.viewmodels.WebViewModel
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.progressindicator.LinearProgressIndicator
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -43,6 +37,28 @@ class WebViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val progressBar = view.findViewById<ProgressBar>(R.id.webViewProgressBar)
         progressBar.progress = 0
+        val webViewActionBar = view.findViewById<BottomNavigationView>(R.id.webViewActionBar)
+        webViewActionBar.setOnItemSelectedListener{ item ->
+            when(item.itemId) {
+                R.id.iconClear -> {
+                    Toast.makeText(context, "icon clear", Toast.LENGTH_LONG).show()
+                    true
+                }
+                R.id.iconSave -> {
+                    // Respond to navigation item 2 click
+                    Toast.makeText(context, "icon save", Toast.LENGTH_LONG).show()
+                    true
+                }
+                R.id.iconShare -> {
+                    Toast.makeText(context, "icon share", Toast.LENGTH_LONG).show()
+                    true
+                }
+                else -> {
+                    Toast.makeText(context, "icon refresh", Toast.LENGTH_LONG).show()
+                    false
+                }
+            }
+        }
         val webView = view.findViewById<WebView>(R.id.webView).apply {
             settings.javaScriptEnabled = true
         }

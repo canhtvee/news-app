@@ -54,6 +54,11 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="MyTheme.WebViewProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressBackgroundTint">?attr/colorPrimary</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+    </style>
+
     <style name="MyTheme.Card" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">8dp</item>
         <item name="strokeColor">@color/color_primary_variant</item>
