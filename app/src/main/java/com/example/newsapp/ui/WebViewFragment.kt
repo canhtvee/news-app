@@ -11,8 +11,12 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.navigation.Navigation
 import com.example.newsapp.R
 import com.example.newsapp.viewmodels.WebViewModel
+import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -33,11 +37,17 @@ class WebViewFragment : Fragment() {
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.webViewToolbar)
+        val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
+        toolbar.setNavigationOnClickListener {
+            mainNavController.popBackStack()
+        }
         val progressBar = view.findViewById<ProgressBar>(R.id.webViewProgressBar)
             .apply {
                 progress = 0
                 max = 100
             }
+
         val webView = view.findViewById<WebView>(R.id.webView).apply {
             settings.javaScriptEnabled = true
         }

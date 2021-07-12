@@ -22,7 +22,6 @@
         <item name="android:statusBarColor">@color/color_on_primary</item>
         <item name="materialCardViewStyle">@style/MyTheme.Card</item>
         <item name="tabStyle">@style/MyTheme.TabLayout</item>
-        <item name="toolbarStyle">@style/MyTheme.Toolbar</item>
         <item name="bottomNavigationStyle">@style/MyTheme.BottomNavigation</item>
 
     </style>
@@ -52,11 +51,6 @@
 
     <style name="MyTheme.BottomNavigationTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
         <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="MyTheme.WebViewProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
-        <item name="android:progressBackgroundTint">?attr/colorPrimary</item>
-        <item name="android:backgroundTint">?attr/colorPrimary</item>
     </style>
 
     <style name="MyTheme.Card" parent="Widget.MaterialComponents.CardView">
@@ -90,5 +84,16 @@
         <item name="android:elevation">0dp</item>
     </style>
 
+    <style name="MyTheme.WebViewToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="navigationIconTint">@color/color_primary</item>
+        <item name="android:backgroundTint">@color/color_on_primary</item>
+        <item name="backgroundColor">@color/color_on_primary</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="MyTheme.WebViewProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal" >
+        <item name="android:progressTint">?attr/colorPrimary</item>
+        <item name="android:progressBackgroundTint">?attr/colorOnPrimary</item>
+    </style>
 
 </resources>
