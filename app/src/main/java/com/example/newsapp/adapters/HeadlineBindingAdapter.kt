@@ -6,6 +6,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.R
 import com.example.newsapp.data.models.Article
 import com.example.newsapp.utils.Resource
@@ -16,7 +17,7 @@ class HeadlineBindingAdapter (
     val webViewModel: WebViewModel
 ) {
 
-    fun bindHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView) {
+    fun bindHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView, swipeRefreshLayout: SwipeRefreshLayout) {
         when (resource) {
             is Resource.Loading -> {
                 Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_LONG).show()
@@ -27,7 +28,7 @@ class HeadlineBindingAdapter (
             }
 
             is Resource.Success -> {
-
+                swipeRefreshLayout.isRefreshing = false
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         .apply { initialPrefetchItemCount = 6 }

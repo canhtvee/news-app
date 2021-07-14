@@ -12,17 +12,27 @@
     <include
         layout="@layout/layout_appbar_progressbar"/>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/webView_layout_swipe_to_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="false"
-        android:fitsSystemWindows="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
 
-        <WebView
-            android:id="@+id/webView"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.core.widget.NestedScrollView>
+            android:layout_height="match_parent"
+            android:fillViewport="false"
+            android:fitsSystemWindows="true"
+            >
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

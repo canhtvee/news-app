@@ -44,7 +44,7 @@ class LifeFragment : Fragment(R.layout.fragment_life) {
         headlineViewModel.fetchLife()
         headlineViewModel.lifeData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView)
+                .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
     }
 }

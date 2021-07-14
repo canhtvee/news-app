@@ -44,7 +44,7 @@ class StartupFragment : Fragment(R.layout.fragment_startup) {
         headlineViewModel.fetchStartup()
         headlineViewModel.startupData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView)
+                .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
     }
 }

@@ -44,7 +44,7 @@ class ScienceFragment : Fragment(R.layout.fragment_science) {
         headlineViewModel.fetchScience()
         headlineViewModel.scienceData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView)
+                .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
 
 

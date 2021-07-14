@@ -14,6 +14,7 @@ import android.widget.ProgressBar
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.navigation.Navigation
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.R
 import com.example.newsapp.viewmodels.WebViewModel
 import com.google.android.material.appbar.MaterialToolbar
@@ -39,15 +40,13 @@ class WebViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val toolbar = view.findViewById<MaterialToolbar>(R.id.webViewToolbar)
         val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
-        toolbar.setNavigationOnClickListener {
-            mainNavController.popBackStack()
-        }
+
         val progressBar = view.findViewById<ProgressBar>(R.id.webViewProgressBar)
             .apply {
                 progress = 0
                 max = 100
             }
-
+        val swipeToRefresh = view.findViewById<SwipeRefreshLayout>(R.id.webView_layout_swipe_to_refresh)
         val webView = view.findViewById<WebView>(R.id.webView).apply {
             settings.javaScriptEnabled = true
         }
@@ -59,6 +58,8 @@ class WebViewFragment : Fragment() {
 
                 if (newProgress >= 70) {
                     progressBar.visibility = View.INVISIBLE
+                    swipeToRefresh.isRefreshing = false
+
                 }
 
             }
@@ -74,6 +75,7 @@ class WebViewFragment : Fragment() {
                 super.onPageFinished(view, url)
                 progressBar.progress = 100
                 progressBar.visibility = View.INVISIBLE
+                swipeToRefresh.isRefreshing = false
             }
         }
 
@@ -81,5 +83,11 @@ class WebViewFragment : Fragment() {
             webView.loadUrl(it.url)
         })
 
+        swipeToRefresh.setOnRefreshListener {
+            webView.reload()
+        }
+        toolbar.setNavigationOnClickListener {
+            mainNavController.popBackStack()
+        }
     }
 }

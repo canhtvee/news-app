@@ -38,8 +38,35 @@ class ExploreTopicFragment: Fragment(R.layout.fragment_explore_topic) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.exploreTopicRecyclerView)
 
         exploreTopicViewModel.topicData.observe(viewLifecycleOwner,  { resource ->
-            HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView)
+            when (resource) {
+                is Resource.Loading -> {
+                    Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(recyclerView.context, "Error", Toast.LENGTH_LONG).show()
+                }
+
+                is Resource.Success -> {
+
+                    recyclerView.apply {
+                        layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                            .apply { initialPrefetchItemCount = 6 }
+                        adapter = HeadlineRecyclerViewAdapter(resource.data){
+                            onItemClick(it)
+                        }
+                        hasFixedSize()
+                        addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+                    }
+                }
+            }
         })
     }
+
+    private fun onItemClick(article: Article){
+        webViewModel.setViewData(article)
+        val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
+        mainNavController.navigate(R.id.action_global_to_webViewFragment)
+    }
+
 }
