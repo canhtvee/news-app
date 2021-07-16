@@ -1,5 +1,6 @@
 package com.example.newsapp.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.newsapp.data.models.Article
 import com.example.newsapp.data.repositories.HeadlineRepository
@@ -25,9 +26,17 @@ class HeadlineViewModel @Inject constructor(
         }
     }
 
+    init {
+        val _businessData = MutableLiveData<Resource<List<Article>>>()
+        businessData = _businessData
+    }
+
     fun fetchBusiness() {
+        Log.d("_HeadlineViewModel", "call fetchBusiness")
+
         businessData = headlineRepository.getBusinessHeadline()
             .asLiveData(viewModelScope.coroutineContext)
+
     }
 
     fun fetchTech() {

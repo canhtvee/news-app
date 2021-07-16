@@ -1,9 +1,13 @@
 package com.example.newsapp.data.repositories
 
+import android.util.Log
 import com.example.newsapp.data.local.ArticleDao
+import com.example.newsapp.data.models.Article
 import com.example.newsapp.data.remote.ArticleRemoteDataSource
+import com.example.newsapp.utils.Resource
 import com.example.newsapp.utils.SourcePlanning
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -18,11 +22,14 @@ class HeadlineRepository @Inject constructor(
         withContext(Dispatchers.IO) { articleLocalDataSource.deleteByTags(tags)}
     }
 
-    fun getBusinessHeadline() = performGetOperation2(
-        getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(sourcePlanning.businessSources) },
-        saveDataToDatabase = { articleLocalDataSource.insert(it) },
-        getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.businessSources) }
-    ).flowOn(Dispatchers.IO)
+    fun getBusinessHeadline() : Flow<Resource<List<Article>>> {
+        Log.d("_HeadlineRepository", "call getBusinessHeadline")
+        return performGetOperation2(
+            getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(sourcePlanning.businessSources) },
+            saveDataToDatabase = { articleLocalDataSource.insert(it) },
+            getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.businessSources) }
+        ).flowOn(Dispatchers.IO)
+    }
 
 
     fun getTechHeadline() = performGetOperation2(

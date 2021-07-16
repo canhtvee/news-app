@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -35,19 +36,16 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
             headlineViewModel.deleteHeadline(sourcePlanning.businessSources)
             headlineViewModel.fetchBusiness()
         }
-        headlineViewModel.fetchBusiness()
+        //headlineViewModel.fetchBusiness()
         headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
 
         view.findViewById<FloatingActionButton>(R.id.business_fab).setOnClickListener {
+            Toast.makeText(context, "refresh news", Toast.LENGTH_SHORT).show()
             headlineViewModel.deleteHeadline(sourcePlanning.businessSources)
             headlineViewModel.fetchBusiness()
-            headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
-                HeadlineBindingAdapter(this, webViewModel)
-                    .bindHeadline(resource, recyclerView, swipeRefreshLayout)
-            })
         }
     }
 }

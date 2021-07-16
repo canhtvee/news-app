@@ -1,5 +1,6 @@
 package com.example.newsapp.data.remote
 
+import android.util.Log
 import com.example.newsapp.data.models.ApiResponse
 import com.example.newsapp.utils.Resource
 import javax.inject.Inject
@@ -15,6 +16,7 @@ class ArticleRemoteDataSource @Inject constructor(
         articleService.getNewsBySource(source, API_KEY) }
 
     suspend fun getFromMultiSources(sources: List<String>): List<Resource<ApiResponse>> {
+        Log.d("_ArticlRemoteDataSource", "call getFromMultiSources")
         val result = mutableListOf<Resource<ApiResponse>>()
         sources.forEach { id ->
             getResult2(id) { articleService.getNewsBySource(id, API_KEY) }.also { result.add(it) }

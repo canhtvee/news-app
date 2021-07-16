@@ -1,5 +1,6 @@
 package com.example.newsapp.data.repositories
 
+import android.util.Log
 import com.example.newsapp.utils.Resource
 import com.example.newsapp.data.models.ApiResponse
 import com.example.newsapp.data.models.Article
@@ -13,9 +14,11 @@ abstract class BaseRepository {
         getDataFromLocalSource: () -> Flow<List<Article>>
     ) = flow {
 
+        Log.d("_BaseRepository", "call performGetOperation2")
         emit(Resource.Loading())
 
         val localData = getDataFromLocalSource().first()
+        Log.d("_BaseRepository", "localData: $localData")
         if (localData.isEmpty()) {
             val response = getDataFromRemoteSource.invoke()
             val success = mutableListOf<Boolean>()

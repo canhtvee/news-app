@@ -11,6 +11,8 @@ import java.util.function.Predicate
 abstract class BaseRemoteDataSource {
 
     protected suspend fun getResult2(content: String, call: suspend () -> Response<ApiResponse>): Resource<ApiResponse> {
+
+        Log.d("_BaseRemoteDataSource", "call getResult2")
         try {
             val response = call()
             if (response.isSuccessful) {
