@@ -1,6 +1,7 @@
 package com.example.newsapp.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import com.example.newsapp.utils.Resource
 import com.example.newsapp.utils.SourcePlanning
 import com.example.newsapp.viewmodels.ExploreTopicViewModel
 import com.example.newsapp.viewmodels.ExploreViewModel
+import com.example.newsapp.viewmodels.HeadlineViewModel
 import com.example.newsapp.viewmodels.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.annotation.meta.When
@@ -37,6 +39,9 @@ class ExploreFragment : Fragment() {
     @Inject
     lateinit var webViewModel: WebViewModel
 
+    @Inject
+    lateinit var headlineViewModel: HeadlineViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,7 +54,9 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
         toolbarTitle.text = resources.getString(R.string.explore)
-
+        headlineViewModel.businessData.observe(viewLifecycleOwner, { business ->
+            Log.d("ExploreFragment", "businessData: ${business.toString()}" )
+        })
         val recyclerView = view.findViewById<RecyclerView>(R.id.exploreRecyclerView)
         exploreViewModel.data.observe(viewLifecycleOwner, { resource ->
             when (resource) {
@@ -78,6 +85,8 @@ class ExploreFragment : Fragment() {
         })
     }
 
+
+
     private fun onOuterItemClick(tag: String){
         val toolbarTitle =  when (tag) {
             "apple" -> "Apple News"
@@ -96,7 +105,11 @@ class ExploreFragment : Fragment() {
     }
     private fun onInnerItemClick(article: Article){
         webViewModel.setViewData(article)
-        val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
-        mainNavController.navigate(R.id.action_global_to_webViewFragment)
+        headlineViewModel.fetchBusiness()
+        headlineViewModel.businessData.observe(viewLifecycleOwner, { business ->
+            Log.d("ExploreFragment", "businessData: ${business.toString()}" )
+        })
+        //val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
+        //mainNavController.navigate(R.id.action_global_to_webViewFragment)
     }
 }

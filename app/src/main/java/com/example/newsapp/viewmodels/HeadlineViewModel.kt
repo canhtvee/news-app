@@ -20,10 +20,18 @@ class HeadlineViewModel @Inject constructor(
     lateinit var scienceData : LiveData<Resource<List<Article>>>
     lateinit var lifeData    : LiveData<Resource<List<Article>>>
 
-    fun deleteHeadline(tags: List<String>) {
+    fun deleteHeadline(tags: List<String>) : Boolean {
+        var deleteFlag = false
         viewModelScope.launch {
-            headlineRepository.deleteByTags(tags)
+            deleteFlag = headlineRepository.deleteByTags(tags)
         }
+        return deleteFlag
+    }
+
+    fun refreshBusiness() {
+        Log.d("_HeadlineViewModel", "call refreshBusiness")
+
+        headlineRepository.refreshBusinessHeadline()
     }
 
     init {
@@ -36,6 +44,7 @@ class HeadlineViewModel @Inject constructor(
 
         businessData = headlineRepository.getBusinessHeadline()
             .asLiveData(viewModelScope.coroutineContext)
+        Log.d("_HeadlineViewModel", businessData.toString())
 
     }
 

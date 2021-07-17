@@ -1,0 +1,36 @@
+Index: app/src/main/java/com/example/newsapp/data/repositories/BaseRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.newsapp.data.repositories\r\n\r\nimport com.example.newsapp.utils.Resource\r\nimport com.example.newsapp.data.models.ApiResponse\r\nimport com.example.newsapp.data.models.Article\r\nimport kotlinx.coroutines.flow.*\r\n\r\nabstract class BaseRepository {\r\n\r\n    fun performGetOperation2(\r\n        getDataFromRemoteSource: suspend () -> List<Resource<ApiResponse>>,\r\n        saveDataToDatabase: suspend (List<Article>) -> Unit,\r\n        getDataFromLocalSource: () -> Flow<List<Article>>\r\n    ) = flow {\r\n\r\n        emit(Resource.Loading())\r\n\r\n        val localData = getDataFromLocalSource().first()\r\n        if (localData.isEmpty()) {\r\n            val response = getDataFromRemoteSource.invoke()\r\n            val success = mutableListOf<Boolean>()\r\n            response.forEach { resp ->\r\n                when (resp) {\r\n                    is Resource.Success -> {\r\n                        saveDataToDatabase(resp.data.articles)\r\n                        success.add(true)\r\n                    }\r\n                    else -> success.add(false)\r\n                }\r\n            }\r\n            emitAll(getDataFromLocalSource().map { data -> Resource.Success(data) })\r\n        } else {\r\n            emitAll(getDataFromLocalSource().map { data -> Resource.Success(data) })\r\n        }\r\n    }\r\n\r\n\r\n    fun performGetOperation(\r\n        getDataFromRemoteSource: suspend () -> Resource<ApiResponse>,\r\n        saveDataToDatabase: suspend (List<Article>) -> Unit,\r\n        getDataFromLocalSource: () -> Flow<List<Article>>\r\n    ) = flow<Resource<List<Article>>> {\r\n\r\n        emit(Resource.Loading())\r\n\r\n        val localData = getDataFromLocalSource().first()\r\n        if (localData.isEmpty()) {\r\n            val response = getDataFromRemoteSource.invoke()\r\n            when (response) {\r\n                is Resource.Success -> {\r\n                    saveDataToDatabase(response.data.articles)\r\n                    emitAll(getDataFromLocalSource().map { data -> Resource.Success(data) })\r\n                }\r\n                is Resource.Error -> {\r\n                    emit(Resource.Error(response.message))\r\n                }\r\n            }\r\n        } else {\r\n\r\n            emitAll(getDataFromLocalSource().map { data -> Resource.Success(data) })\r\n\r\n        }\r\n    }\r\n\r\n    /*   fun <L> performGetOperation(\r\n        getDataFromRemoteSource: suspend () -> Resource<ApiResponse>,\r\n        saveDataToDatabase: suspend (List<Article>) -> Unit,\r\n        getDataFromLocalSource: () -> Flow<L>\r\n    ) = flow<Resource<L>> {\r\n\r\n        emit(Resource.Loading())\r\n\r\n        val localData = getDataFromLocalSource().first()\r\n        Log.d(\"First Item\", localData.toString())\r\n\r\n        if (localData ==) {\r\n            val response = getDataFromRemoteSource.invoke()\r\n            when (response) {\r\n                is Resource.Success -> {\r\n                    Log.d(\"Data\", response.data.articles.toString())\r\n                    saveDataToDatabase(response.data.articles)\r\n                    emitAll(getDataFromLocalSource().map { data -> Resource.Success(data) })\r\n                }\r\n                is Resource.Error -> {\r\n                    emit(Resource.Error(response.message))\r\n                }\r\n            }\r\n        } else {\r\n\r\n            emitAll(getDataFromLocalSource().map { data -> Resource.Success(data) })\r\n\r\n        }\r\n    }\r\n\r\n    */\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/newsapp/data/repositories/BaseRepository.kt	(revision 533c7dc324a15d40f7b0d904354c3fa94792d35e)
++++ app/src/main/java/com/example/newsapp/data/repositories/BaseRepository.kt	(date 1626367626191)
+@@ -1,5 +1,6 @@
+ package com.example.newsapp.data.repositories
+ 
++import android.util.Log
+ import com.example.newsapp.utils.Resource
+ import com.example.newsapp.data.models.ApiResponse
+ import com.example.newsapp.data.models.Article
+@@ -13,9 +14,11 @@
+         getDataFromLocalSource: () -> Flow<List<Article>>
+     ) = flow {
+ 
++        Log.d("performGetOperation2", "call performGetOperation2")
+         emit(Resource.Loading())
+ 
+         val localData = getDataFromLocalSource().first()
++
+         if (localData.isEmpty()) {
+             val response = getDataFromRemoteSource.invoke()
+             val success = mutableListOf<Boolean>()
+@@ -23,6 +26,7 @@
+                 when (resp) {
+                     is Resource.Success -> {
+                         saveDataToDatabase(resp.data.articles)
++                        Log.d("getOperation2 success", resp.data.toString())
+                         success.add(true)
+                     }
+                     else -> success.add(false)

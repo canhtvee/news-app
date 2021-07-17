@@ -18,8 +18,18 @@ class HeadlineRepository @Inject constructor(
     private val sourcePlanning: SourcePlanning
 ) : BaseRepository() {
 
-    suspend fun deleteByTags(tags : List<String>) {
+    suspend fun deleteByTags(tags : List<String>) : Boolean {
         withContext(Dispatchers.IO) { articleLocalDataSource.deleteByTags(tags)}
+        return true
+    }
+
+    fun refreshBusinessHeadline() : Flow<Resource<List<Article>>> {
+        Log.d("_HeadlineRepository", "call refreshBusinessHeadline")
+        return performRefresh(
+            getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(sourcePlanning.businessSources) },
+            saveDataToDatabase = { articleLocalDataSource.insert(it) },
+            getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.businessSources) }
+        ).flowOn(Dispatchers.IO)
     }
 
     fun getBusinessHeadline() : Flow<Resource<List<Article>>> {

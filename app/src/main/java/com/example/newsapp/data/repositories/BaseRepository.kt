@@ -38,6 +38,27 @@ abstract class BaseRepository {
     }
 
 
+    fun performRefresh(
+        getDataFromRemoteSource: suspend () -> List<Resource<ApiResponse>>,
+        saveDataToDatabase: suspend (List<Article>) -> Unit,
+        getDataFromLocalSource: () -> Flow<List<Article>>
+    ) = flow {
+
+        Log.d("_BaseRepository", "call performRefresh")
+        val response = getDataFromRemoteSource.invoke()
+        val success = mutableListOf<Boolean>()
+        response.forEach { resp ->
+            when (resp) {
+                is Resource.Success -> {
+                    saveDataToDatabase(resp.data.articles)
+                    success.add(true)
+                }
+                else -> success.add(false)
+            }
+        }
+        emitAll(getDataFromLocalSource().map { data -> Resource.Success(data) })
+    }
+
     fun performGetOperation(
         getDataFromRemoteSource: suspend () -> Resource<ApiResponse>,
         saveDataToDatabase: suspend (List<Article>) -> Unit,
