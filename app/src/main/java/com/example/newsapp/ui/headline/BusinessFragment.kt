@@ -37,10 +37,12 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.businessRecyclerView)
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
-            val deleteFlag = headlineViewModel.deleteHeadline(sourcePlanning.businessSources)
-            if (deleteFlag) {
-                headlineViewModel.fetchBusiness()
-            }
+            headlineViewModel.deleteHeadline(sourcePlanning.businessSources)
+            headlineViewModel.fetchBusiness()
+            headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
+                Log.d("BusinessFragment", "businessData + ${resource.toString()}")
+
+            })
         }
         headlineViewModel.fetchBusiness()
         headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
