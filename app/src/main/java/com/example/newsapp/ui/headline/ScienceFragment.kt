@@ -40,11 +40,15 @@ class ScienceFragment : Fragment(R.layout.fragment_science) {
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.scienceSources)
             headlineViewModel.fetchScience()
+            headlineViewModel.scienceData.observe(viewLifecycleOwner, { resource ->
+                HeadlineBindingAdapter(this, webViewModel)
+                    .refreshHeadline(resource, recyclerView, swipeRefreshLayout)
+            })
         }
         headlineViewModel.fetchScience()
         headlineViewModel.scienceData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView, swipeRefreshLayout)
+                .bindHeadline(resource, recyclerView)
         })
 
 

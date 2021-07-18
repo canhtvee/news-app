@@ -40,11 +40,15 @@ class StartupFragment : Fragment(R.layout.fragment_startup) {
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.startup)
             headlineViewModel.fetchStartup()
+            headlineViewModel.startupData.observe(viewLifecycleOwner, { resource ->
+                HeadlineBindingAdapter(this, webViewModel)
+                    .refreshHeadline(resource, recyclerView, swipeRefreshLayout)
+            })
         }
         headlineViewModel.fetchStartup()
         headlineViewModel.startupData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView, swipeRefreshLayout)
+                .bindHeadline(resource, recyclerView)
         })
     }
 }

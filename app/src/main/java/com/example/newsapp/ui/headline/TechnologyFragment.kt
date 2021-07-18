@@ -41,11 +41,15 @@ class TechnologyFragment : Fragment(R.layout.fragment_technology) {
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.techSources)
             headlineViewModel.fetchTech()
+            headlineViewModel.techData.observe(viewLifecycleOwner, { resource ->
+                HeadlineBindingAdapter(this, webViewModel)
+                    .refreshHeadline(resource, recyclerView, swipeRefreshLayout)
+            })
         }
         headlineViewModel.fetchTech()
         headlineViewModel.techData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView, swipeRefreshLayout)
+                .bindHeadline(resource, recyclerView)
         })
     }
 }

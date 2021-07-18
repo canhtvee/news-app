@@ -40,11 +40,15 @@ class LifeFragment : Fragment(R.layout.fragment_life) {
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.lifeSources)
             headlineViewModel.fetchLife()
+            headlineViewModel.lifeData.observe(viewLifecycleOwner, { resource ->
+                HeadlineBindingAdapter(this, webViewModel)
+                    .refreshHeadline(resource, recyclerView, swipeRefreshLayout)
+            })
         }
         headlineViewModel.fetchLife()
         headlineViewModel.lifeData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView, swipeRefreshLayout)
+                .bindHeadline(resource, recyclerView)
         })
     }
 }

@@ -33,21 +33,21 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
     lateinit var webViewModel: WebViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("BusinessFragment", "onCreateView")
         val recyclerView = view.findViewById<RecyclerView>(R.id.businessRecyclerView)
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
+
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.businessSources)
             headlineViewModel.fetchBusiness()
             headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
                 HeadlineBindingAdapter(this, webViewModel)
-                    .bindHeadline(resource, recyclerView, swipeRefreshLayout)
+                    .refreshHeadline(resource, recyclerView, swipeRefreshLayout)
             })
         }
         headlineViewModel.fetchBusiness()
         headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
-                .bindHeadline(resource, recyclerView, swipeRefreshLayout)
+                .bindHeadline(resource, recyclerView)
         })
     }
 }

@@ -1,6 +1,5 @@
 package com.example.newsapp.data.remote
 
-import android.util.Log
 import com.example.newsapp.data.models.ApiResponse
 import com.example.newsapp.utils.Resource
 import retrofit2.Response
