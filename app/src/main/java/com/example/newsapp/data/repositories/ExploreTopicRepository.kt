@@ -11,13 +11,13 @@ class ExploreTopicRepository @Inject constructor(
     private val articleLocalDataSource: ArticleDao,
 ) : BaseRepository() {
 
-    fun getSourceHeadline(sourceId: String) = performGetOperation(
+    fun getSourceHeadline(sourceId: String) = performGetOperation2(
         getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(listOf(sourceId)) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
         getDataFromLocalSource = { articleLocalDataSource.loadBySource(sourceId)}
     ).flowOn(Dispatchers.IO)
 
-    fun getTagHeadline(tag: String) = performGetOperation(
+    fun getTagHeadline(tag: String) = performGetOperation2(
         getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(listOf(tag)) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
         getDataFromLocalSource = { articleLocalDataSource.loadByTags(listOf(tag))}

@@ -1,15 +1,18 @@
 package com.example.newsapp.data.remote
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.newsapp.data.models.ApiResponse
 import com.example.newsapp.utils.Resource
 import retrofit2.Response
+import java.util.function.Predicate
 
 abstract class BaseRemoteDataSource {
 
-    protected suspend fun getResult(
-        content: String, call: suspend () -> Response<ApiResponse>
-    ): Resource<ApiResponse> {
+    protected suspend fun getResult2(content: String, call: suspend () -> Response<ApiResponse>): Resource<ApiResponse> {
+
+        Log.d("_BaseRemoteDataSource", "call getResult2")
         try {
             val response = call()
             if (response.isSuccessful) {
@@ -32,6 +35,21 @@ abstract class BaseRemoteDataSource {
             return error(" ${response.code()} ${response.message()}")
         } catch (e: Exception) {
             return error(e.message ?: e.toString())
+        }
+    }
+
+    protected suspend fun <T> getResult(call: suspend () -> Response<T>): Resource<T> {
+        try {
+            val response = call()
+            if (response.isSuccessful) {
+                val body = response.body()
+                Log.d("Response", body.toString())
+                body?.let { return Resource.Success(body) }
+            }
+            return error(" ${response.code()} ${response.message()}")
+        } catch (e: Exception) {
+            return error(e.message ?: e.toString())
+
         }
     }
 
