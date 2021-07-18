@@ -40,8 +40,8 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
             headlineViewModel.deleteHeadline(sourcePlanning.businessSources)
             headlineViewModel.fetchBusiness()
             headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
-                Log.d("BusinessFragment", "businessData + ${resource.toString()}")
-
+                HeadlineBindingAdapter(this, webViewModel)
+                    .bindHeadline(resource, recyclerView, swipeRefreshLayout)
             })
         }
         headlineViewModel.fetchBusiness()
@@ -49,14 +49,5 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
             HeadlineBindingAdapter(this, webViewModel)
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
-
-        view.findViewById<FloatingActionButton>(R.id.business_fab).setOnClickListener {
-            Toast.makeText(context, "refresh news", Toast.LENGTH_SHORT).show()
-            headlineViewModel.fetchBusiness()
-            headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
-                Log.d("BusinessFragment", "businessData + ${resource.toString()}")
-
-            })
-        }
     }
 }
