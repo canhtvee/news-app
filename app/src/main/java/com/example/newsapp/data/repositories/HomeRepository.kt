@@ -23,7 +23,7 @@ class HomeRepository @Inject constructor(
 
     fun loadBySource(sourceId: String) = articleLocalDataSource.loadBySource(sourceId).flowOn(Dispatchers.IO)
 
-    fun getTagsHeadline() = performGetOperation2(
+    fun getTagsHeadline() = performGetOperation(
         getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(sourcePlanning.tagList) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
         getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.tagList) }
