@@ -40,9 +40,11 @@ class ExploreTopicFragment: Fragment(R.layout.fragment_explore_topic) {
         exploreTopicViewModel.topicData.observe(viewLifecycleOwner,  { resource ->
             when (resource) {
                 is Resource.Loading -> {
+                    Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_LONG).show()
                 }
 
                 is Resource.Error -> {
+                    Toast.makeText(recyclerView.context, "Error", Toast.LENGTH_LONG).show()
                 }
 
                 is Resource.Success -> {

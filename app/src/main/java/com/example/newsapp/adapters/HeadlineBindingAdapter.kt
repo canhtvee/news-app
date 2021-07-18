@@ -17,31 +17,7 @@ class HeadlineBindingAdapter (
     val webViewModel: WebViewModel
 ) {
 
-    fun bindHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView) {
-        when (resource) {
-            is Resource.Loading -> {
-                Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_LONG).show()
-            }
-
-            is Resource.Error -> {
-                Toast.makeText(recyclerView.context, "Error", Toast.LENGTH_LONG).show()
-            }
-
-            is Resource.Success -> {
-                recyclerView.apply {
-                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                        .apply { initialPrefetchItemCount = 6 }
-                    adapter = HeadlineRecyclerViewAdapter(resource.data){
-                        onItemClick(it)
-                    }
-                    hasFixedSize()
-                    addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                }
-            }
-        }
-    }
-
-    fun refreshHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView, swipeRefreshLayout: SwipeRefreshLayout) {
+    fun bindHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView, swipeRefreshLayout: SwipeRefreshLayout) {
         when (resource) {
             is Resource.Loading -> {
                 Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_LONG).show()
@@ -54,9 +30,13 @@ class HeadlineBindingAdapter (
             is Resource.Success -> {
                 swipeRefreshLayout.isRefreshing = false
                 recyclerView.apply {
+                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                        .apply { initialPrefetchItemCount = 6 }
                     adapter = HeadlineRecyclerViewAdapter(resource.data){
                         onItemClick(it)
                     }
+                    hasFixedSize()
+                    addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
                 }
             }
         }
