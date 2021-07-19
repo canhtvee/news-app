@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.R
 import com.example.newsapp.adapters.HeadlineBindingAdapter
+import com.example.newsapp.adapters.HeadlineRecyclerViewAdapter
+import com.example.newsapp.utils.Resource
 import com.example.newsapp.utils.SourcePlanning
 import com.example.newsapp.viewmodels.HeadlineViewModel
 import com.example.newsapp.viewmodels.WebViewModel
@@ -38,11 +40,11 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.businessSources)
-            headlineViewModel.fetchBusiness()
-            headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
-                Log.d("BusinessFragment", "businessData + ${resource.toString()}")
-
-            })
+//            headlineViewModel.fetchBusiness()
+//            headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
+//                Log.d("BusinessFragment", "businessData + ${resource.toString()}")
+//                headlineViewModel.refreshBusiness()
+//            })
         }
         headlineViewModel.fetchBusiness()
         headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
@@ -54,9 +56,13 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
             Toast.makeText(context, "refresh news", Toast.LENGTH_SHORT).show()
             headlineViewModel.fetchBusiness()
             headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
-                Log.d("BusinessFragment", "businessData + ${resource.toString()}")
-
+                HeadlineBindingAdapter(this, webViewModel)
+                    .refreshHeadline(resource, recyclerView, swipeRefreshLayout)
             })
+//            headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
+//                //Log.d("BusinessFragment", "businessData + ${resource.toString()}")
+//
+//            })
         }
     }
 }

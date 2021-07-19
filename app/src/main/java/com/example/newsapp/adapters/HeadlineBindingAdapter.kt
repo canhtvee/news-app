@@ -1,5 +1,6 @@
 package com.example.newsapp.adapters
 
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -41,6 +42,27 @@ class HeadlineBindingAdapter (
             }
         }
     }
+
+    fun refreshHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView, swipeRefreshLayout: SwipeRefreshLayout) {
+        Log.d("BusinessFragment", resource.toString())
+        when (resource) {
+            is Resource.Loading -> {
+            }
+
+            is Resource.Error -> {
+            }
+
+            is Resource.Success -> {
+                swipeRefreshLayout.isRefreshing = false
+                recyclerView.apply {
+                    adapter = HeadlineRecyclerViewAdapter(resource.data){
+                        onItemClick(it)
+                    }
+                }
+            }
+        }
+    }
+
 
     private fun onItemClick(article: Article){
         webViewModel.setViewData(article)

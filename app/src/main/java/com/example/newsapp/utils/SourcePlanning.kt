@@ -20,10 +20,10 @@ data class SourcePlanning(
 
     val businessSources: List<String> = listOf<String>(
         "business-insider",
-        "australian-financial-review",
-        "business-insider-uk",
-        "fortune",
-        "the-wall-street-journal",
+        //"australian-financial-review",
+        //"business-insider-uk",
+        //"fortune",
+        //"the-wall-street-journal",
     ),
 
     val startup: List<String> = listOf<String>(
