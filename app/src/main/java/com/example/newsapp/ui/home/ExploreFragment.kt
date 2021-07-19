@@ -39,9 +39,6 @@ class ExploreFragment : Fragment() {
     @Inject
     lateinit var webViewModel: WebViewModel
 
-    @Inject
-    lateinit var headlineViewModel: HeadlineViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,9 +51,6 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
         toolbarTitle.text = resources.getString(R.string.explore)
-        headlineViewModel.businessData.observe(viewLifecycleOwner, { business ->
-            Log.d("ExploreFragment", "businessData: ${business.toString()}" )
-        })
         val recyclerView = view.findViewById<RecyclerView>(R.id.exploreRecyclerView)
         exploreViewModel.data.observe(viewLifecycleOwner, { resource ->
             when (resource) {
@@ -105,11 +99,7 @@ class ExploreFragment : Fragment() {
     }
     private fun onInnerItemClick(article: Article){
         webViewModel.setViewData(article)
-        headlineViewModel.fetchBusiness()
-        headlineViewModel.businessData.observe(viewLifecycleOwner, { business ->
-            Log.d("ExploreFragment", "businessData: ${business.toString()}" )
-        })
-        //val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
-        //mainNavController.navigate(R.id.action_global_to_webViewFragment)
+        val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
+        mainNavController.navigate(R.id.action_global_to_webViewFragment)
     }
 }

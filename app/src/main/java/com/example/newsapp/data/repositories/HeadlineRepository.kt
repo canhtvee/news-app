@@ -23,44 +23,33 @@ class HeadlineRepository @Inject constructor(
         return true
     }
 
-    fun refreshBusinessHeadline() : Flow<Resource<List<Article>>> {
-        Log.d("_HeadlineRepository", "call refreshBusinessHeadline")
-        return performRefresh(
-            getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(sourcePlanning.businessSources) },
-            saveDataToDatabase = { articleLocalDataSource.insert(it) },
-            getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.businessSources) }
-        ).flowOn(Dispatchers.IO)
-    }
-
     fun getBusinessHeadline() : Flow<Resource<List<Article>>> {
-        Log.d("_HeadlineRepository", "call getBusinessHeadline")
-        return performGetOperation2(
+        return performGetOperation(
             getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(sourcePlanning.businessSources) },
             saveDataToDatabase = { articleLocalDataSource.insert(it) },
             getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.businessSources) }
         ).flowOn(Dispatchers.IO)
     }
 
-
-    fun getTechHeadline() = performGetOperation2(
+    fun getTechHeadline() = performGetOperation(
         getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(sourcePlanning.techSources) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
         getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.techSources) }
     ).flowOn(Dispatchers.IO)
 
-    fun getStartupHeadline() = performGetOperation2(
+    fun getStartupHeadline() = performGetOperation(
         getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(sourcePlanning.startup) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
         getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.startup) }
     ).flowOn(Dispatchers.IO)
 
-    fun getScienceHeadline() = performGetOperation2(
+    fun getScienceHeadline() = performGetOperation(
         getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(sourcePlanning.scienceSources) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
         getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.scienceSources) }
     ).flowOn(Dispatchers.IO)
 
-    fun getLifeHeadline() = performGetOperation2(
+    fun getLifeHeadline() = performGetOperation(
         getDataFromRemoteSource = { articleRemoteDataSource.getFromMultiSources(sourcePlanning.lifeSources) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
         getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.lifeSources) }

@@ -43,31 +43,9 @@ class HeadlineBindingAdapter (
         }
     }
 
-    fun refreshHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView, swipeRefreshLayout: SwipeRefreshLayout) {
-        Log.d("BusinessFragment", resource.toString())
-        when (resource) {
-            is Resource.Loading -> {
-            }
-
-            is Resource.Error -> {
-            }
-
-            is Resource.Success -> {
-                swipeRefreshLayout.isRefreshing = false
-                recyclerView.apply {
-                    adapter = HeadlineRecyclerViewAdapter(resource.data){
-                        onItemClick(it)
-                    }
-                }
-            }
-        }
-    }
-
-
     private fun onItemClick(article: Article){
         webViewModel.setViewData(article)
         val mainNavController = Navigation.findNavController(fragment.requireActivity(), R.id.nav_host_fragment_container)
         mainNavController.navigate(R.id.action_global_to_webViewFragment)
     }
-
 }
