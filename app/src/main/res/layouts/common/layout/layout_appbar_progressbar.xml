@@ -26,6 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 app:navigationIcon="@drawable/ic_clear"
+                app:menu="@menu/webview_top_menu"
+                app:itemIconTint="@color/color_primary"
+                app:iconTint="@color/color_primary"
                 />
 
             <ProgressBar

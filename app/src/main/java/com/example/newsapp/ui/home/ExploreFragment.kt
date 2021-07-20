@@ -79,8 +79,6 @@ class ExploreFragment : Fragment() {
         })
     }
 
-
-
     private fun onOuterItemClick(tag: String){
         val toolbarTitle =  when (tag) {
             "apple" -> "Apple News"

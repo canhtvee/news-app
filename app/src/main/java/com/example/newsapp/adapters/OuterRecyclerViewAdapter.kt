@@ -19,7 +19,7 @@ class  OuterRecyclerViewAdapter(
     private val innerItemClickHandler: (Article) -> Unit
 ) : RecyclerView.Adapter<OuterRecyclerViewAdapter.ViewHolder>() {
 
-    var imageBindingAdapter = ImageBindingAdapter()
+//    var imageBindingAdapter = ImageBindingAdapter()
 
     val activeTags = SourcePlanning().tagList.filter { tag -> data.count { it.content.equals(tag) } > 0 }
 

@@ -40,12 +40,20 @@ class TechnologyFragment : Fragment(R.layout.fragment_technology) {
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.tech_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.techSources)
-            headlineViewModel.fetchTech()
         }
         headlineViewModel.fetchTech()
         headlineViewModel.techData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
+        })
+        headlineViewModel.refreshFlag.observe(viewLifecycleOwner, { flag ->
+            if (flag) {
+                headlineViewModel._deleteFlag.value = false
+                headlineViewModel.fetchTech()
+                headlineViewModel.techData.observe(viewLifecycleOwner, { resource ->
+                    resource.toString() // can not be deleted
+                })
+            }
         })
     }
 }

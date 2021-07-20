@@ -27,7 +27,6 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
     lateinit var webViewModel: WebViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("BusinessFragment", "onCreateView")
         val recyclerView = view.findViewById<RecyclerView>(R.id.businessRecyclerView)
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
@@ -42,8 +41,8 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
 
         headlineViewModel.refreshFlag.observe(viewLifecycleOwner, { flag ->
             if (flag) {
-                headlineViewModel.fetchBusiness()
                 headlineViewModel._deleteFlag.value = false
+                headlineViewModel.fetchBusiness()
                 headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
                     resource.toString() // can not be deleted
                 })

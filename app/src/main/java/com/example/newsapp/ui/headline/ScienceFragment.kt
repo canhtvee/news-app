@@ -39,14 +39,20 @@ class ScienceFragment : Fragment(R.layout.fragment_science) {
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.science_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.scienceSources)
-            headlineViewModel.fetchScience()
         }
         headlineViewModel.fetchScience()
         headlineViewModel.scienceData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
-
-
+        headlineViewModel.refreshFlag.observe(viewLifecycleOwner, { flag ->
+            if (flag) {
+                headlineViewModel._deleteFlag.value = false
+                headlineViewModel.fetchScience()
+                headlineViewModel.scienceData.observe(viewLifecycleOwner, { resource ->
+                    resource.toString() // can not be deleted
+                })
+            }
+        })
     }
 }

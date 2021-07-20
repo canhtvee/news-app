@@ -39,12 +39,20 @@ class LifeFragment : Fragment(R.layout.fragment_life) {
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.life_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
             headlineViewModel.deleteHeadline(sourcePlanning.lifeSources)
-            headlineViewModel.fetchLife()
         }
         headlineViewModel.fetchLife()
         headlineViewModel.lifeData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
+        })
+        headlineViewModel.refreshFlag.observe(viewLifecycleOwner, { flag ->
+            if (flag) {
+                headlineViewModel._deleteFlag.value = false
+                headlineViewModel.fetchLife()
+                headlineViewModel.lifeData.observe(viewLifecycleOwner, { resource ->
+                    resource.toString() // can not be deleted
+                })
+            }
         })
     }
 }
