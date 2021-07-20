@@ -89,8 +89,6 @@
         <item name="android:backgroundTint">@color/color_on_primary</item>
         <item name="backgroundColor">@color/color_on_primary</item>
         <item name="android:elevation">0dp</item>
-        <item name="iconTint">@color/color_primary</item>
-        <item name="itemIconTint">@color/color_primary</item>
     </style>
 
     <style name="MyTheme.WebViewProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal" >
