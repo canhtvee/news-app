@@ -37,8 +37,10 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideExploreViewModel(homeRepository: HomeRepository
-    ): ExploreViewModel = ExploreViewModel(homeRepository)
+    fun provideExploreViewModel(
+        homeRepository: HomeRepository,
+        sourcePlanning: SourcePlanning
+    ): ExploreViewModel = ExploreViewModel(homeRepository, sourcePlanning)
 
     @Singleton
     @Provides

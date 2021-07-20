@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.R
 import com.example.newsapp.adapters.OuterRecyclerViewAdapter
 import com.example.newsapp.data.models.Article
@@ -51,8 +52,24 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
         toolbarTitle.text = resources.getString(R.string.explore)
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.explore_layout_swipe_to_refresh)
+        swipeRefreshLayout.setOnRefreshListener {
+            exploreViewModel.deleteExplore()
+        }
+
+        exploreViewModel.refreshFlag.observe(viewLifecycleOwner, { flag ->
+            if (flag) {
+                exploreViewModel._deleteFlag.value = false
+                exploreViewModel.fetchExplore()
+                exploreViewModel.exploreData.observe(viewLifecycleOwner, { resource ->
+                    resource.toString() // can not be deleted
+                })
+            }
+        })
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.exploreRecyclerView)
-        exploreViewModel.data.observe(viewLifecycleOwner, { resource ->
+        exploreViewModel.fetchExplore()
+        exploreViewModel.exploreData.observe(viewLifecycleOwner, { resource ->
             when (resource) {
                 is Resource.Loading -> {
                     Toast.makeText(view.context, "Loading...", Toast.LENGTH_LONG).show()
@@ -63,7 +80,7 @@ class ExploreFragment : Fragment() {
                 }
 
                 is Resource.Success -> {
-
+                    swipeRefreshLayout.isRefreshing = false
                     recyclerView.apply {
                         layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             .apply { initialPrefetchItemCount = 4 }
@@ -89,7 +106,6 @@ class ExploreFragment : Fragment() {
             "facebook" -> "Facebook News"
             else -> "Twitter News"
         }
-
         exploreTopicViewModel.tag = toolbarTitle
         exploreTopicViewModel.fetTagHeadline(tag)
         val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)

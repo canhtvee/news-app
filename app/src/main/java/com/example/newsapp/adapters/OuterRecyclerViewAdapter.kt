@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,8 @@ import com.example.newsapp.R
 import com.example.newsapp.data.models.Article
 import com.example.newsapp.utils.LinePagerIndicatorDecoration
 import com.example.newsapp.utils.SourcePlanning
-import javax.inject.Inject
+import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.appbar.MaterialToolbar
 
 class  OuterRecyclerViewAdapter(
     private val data: List<Article>,
@@ -19,16 +21,18 @@ class  OuterRecyclerViewAdapter(
     private val innerItemClickHandler: (Article) -> Unit
 ) : RecyclerView.Adapter<OuterRecyclerViewAdapter.ViewHolder>() {
 
-//    var imageBindingAdapter = ImageBindingAdapter()
-
     val activeTags = SourcePlanning().tagList.filter { tag -> data.count { it.content.equals(tag) } > 0 }
 
     class ViewHolder(view: View, onItemClicked: (Int) -> Unit) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.textView1)
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.outerItemViewToolbar)
         val innerRecyclerView: RecyclerView = view.findViewById(R.id.innerRecyclerView)
         init {
-            itemView.setOnClickListener {
-                onItemClicked(absoluteAdapterPosition)
+
+            toolbar.setOnMenuItemClickListener { item ->
+                if (item.itemId == R.id.iconForward) {
+                    onItemClicked(absoluteAdapterPosition)
+                }
+                return@setOnMenuItemClickListener true
             }
         }
     }
@@ -45,7 +49,7 @@ class  OuterRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.textView.text = activeTags[position]
+        viewHolder.toolbar.title = activeTags[position]
         val dataSet: List<Article> = data.filter { it.content.equals(activeTags[position]) }
         val subSet = if (dataSet.size > 6) dataSet.subList(0, 6) else dataSet
         bindInnerRecyclerView(viewHolder.innerRecyclerView, subSet)

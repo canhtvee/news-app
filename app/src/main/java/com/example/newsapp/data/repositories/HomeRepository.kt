@@ -14,22 +14,13 @@ class HomeRepository @Inject constructor(
     private val sourcePlanning: SourcePlanning
 ) : BaseRepository() {
 
-    suspend fun deleteAll() {
-        withContext(Dispatchers.IO) { articleLocalDataSource.deleteAll() }
+    suspend fun deleteByTags(tags : List<String>) : Boolean {
+        withContext(Dispatchers.IO) { articleLocalDataSource.deleteByTags(tags)}
+        return true
     }
-    suspend fun deleteByTags(tags : List<String>) {
-        withContext(Dispatchers.IO) { articleLocalDataSource.deleteByTags(tags )}
-    }
-
-    fun loadBySource(sourceId: String) = articleLocalDataSource.loadBySource(sourceId).flowOn(Dispatchers.IO)
-
     fun getTagsHeadline() = performGetOperation(
         getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(sourcePlanning.tagList) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
         getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.tagList) }
     ).flowOn(Dispatchers.IO)
-
-
-
-
 }
