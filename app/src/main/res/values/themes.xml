@@ -46,7 +46,6 @@
         <item name="itemTextColor">@color/bottom_nav_item_color</item>
         <item name="itemTextAppearanceInactive">@style/MyTheme.BottomNavigationTextAppearance</item>
         <item name="itemTextAppearanceActive">@style/MyTheme.BottomNavigationTextAppearance</item>
-        <item name="strokeWidth">4dp</item>
     </style>
 
     <style name="MyTheme.BottomNavigationTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
@@ -92,8 +91,8 @@
     </style>
 
     <style name="MyTheme.WebViewProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal" >
-        <item name="android:progressTint">?attr/colorPrimary</item>
-        <item name="android:progressBackgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:progressTint">@color/color_primary</item>
+        <item name="android:progressBackgroundTint">@color/color_on_primary</item>
     </style>
 
 </resources>

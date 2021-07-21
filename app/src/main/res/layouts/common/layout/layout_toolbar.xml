@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/color_on_primary"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:text="@string/app_name"
         />

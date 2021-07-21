@@ -41,9 +41,9 @@ class Mediator : Fragment() {
         toolbarTitle.text = resources.getString(R.string.mediator)
 
         val sourceIcons: TypedArray = resources.obtainTypedArray(R.array.following_source_icons)
-
         val followingRecyclerView = view.findViewById<RecyclerView>(R.id.followingRecyclerView)
-
+        val itemDivider = DividerItemDecoration(followingRecyclerView.context, LinearLayoutManager.VERTICAL)
+        itemDivider.setDrawable(requireContext().getDrawable(R.drawable.item_divider)!!)
         followingRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = SourceRecyclerViewAdapter(sourceIcons) { sourceId, sourceName ->
@@ -53,7 +53,7 @@ class Mediator : Fragment() {
                 )
             }
             hasFixedSize()
-            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+            addItemDecoration(itemDivider)
         }
     }
 

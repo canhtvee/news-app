@@ -29,6 +29,8 @@ class HeadlineBindingAdapter (
 
             is Resource.Success -> {
                 swipeRefreshLayout.isRefreshing = false
+                val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
+                itemDivider.setDrawable(fragment.requireContext().getDrawable(R.drawable.item_divider)!!)
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         .apply { initialPrefetchItemCount = 6 }
@@ -36,7 +38,7 @@ class HeadlineBindingAdapter (
                         onItemClick(it)
                     }
                     hasFixedSize()
-                    addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+                    addItemDecoration(itemDivider)
                 }
             }
         }

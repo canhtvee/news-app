@@ -44,7 +44,8 @@ class ExploreTopicFragment: Fragment(R.layout.fragment_explore_topic) {
                 }
 
                 is Resource.Success -> {
-
+                    val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
+                    itemDivider.setDrawable(requireContext().getDrawable(R.drawable.item_divider)!!)
                     recyclerView.apply {
                         layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             .apply { initialPrefetchItemCount = 6 }
@@ -52,7 +53,7 @@ class ExploreTopicFragment: Fragment(R.layout.fragment_explore_topic) {
                             onItemClick(it)
                         }
                         hasFixedSize()
-                        addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+                        addItemDecoration(itemDivider)
                     }
                 }
             }
