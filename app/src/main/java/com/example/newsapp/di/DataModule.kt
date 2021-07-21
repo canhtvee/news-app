@@ -4,7 +4,6 @@ import android.content.Context
 import com.example.newsapp.data.local.AppDatabase
 import com.example.newsapp.data.local.ArticleDao
 import com.example.newsapp.data.remote.ArticleRemoteDataSource
-import com.example.newsapp.data.repositories.HeadlineRepository
 import com.example.newsapp.data.repositories.HomeRepository
 import com.example.newsapp.utils.SourcePlanning
 import dagger.Module
@@ -33,13 +32,4 @@ object DataModule {
         articleLocalDataSource: ArticleDao,
         sourcePlaning: SourcePlanning,
     ) = HomeRepository(articleRemoteDataSource, articleLocalDataSource, sourcePlaning)
-
-    @Singleton
-    @Provides
-    fun provideHeadlineRepository(
-        articleRemoteDataSource: ArticleRemoteDataSource,
-        articleLocalDataSource: ArticleDao,
-        sourcePlaning: SourcePlanning,
-    ) = HeadlineRepository(articleRemoteDataSource, articleLocalDataSource, sourcePlaning)
-
 }

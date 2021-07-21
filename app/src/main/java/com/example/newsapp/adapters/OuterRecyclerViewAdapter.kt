@@ -3,8 +3,6 @@ package com.example.newsapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +10,6 @@ import com.example.newsapp.R
 import com.example.newsapp.data.models.Article
 import com.example.newsapp.utils.LinePagerIndicatorDecoration
 import com.example.newsapp.utils.SourcePlanning
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 
 class  OuterRecyclerViewAdapter(
@@ -51,7 +48,7 @@ class  OuterRecyclerViewAdapter(
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.toolbar.title = activeTags[position]
         val dataSet: List<Article> = data.filter { it.content.equals(activeTags[position]) }
-        val subSet = if (dataSet.size > 6) dataSet.subList(0, 6) else dataSet
+        val subSet = if (dataSet.size > 7) dataSet.subList(0, 7) else dataSet
         bindInnerRecyclerView(viewHolder.innerRecyclerView, subSet)
     }
 

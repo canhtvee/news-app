@@ -3,19 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/iconSave"
         android:icon="@drawable/ic_save"
         android:title="@string/webview_save"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/iconShare"
         android:icon="@drawable/ic_share"
         android:title="@string/webview_share"
         app:showAsAction="ifRoom"
         />
     <item
-        android:id="@+id/iconRefresh"
         android:icon="@drawable/ic_refresh"
         android:title="@string/webview_refresh"
         app:showAsAction="ifRoom"

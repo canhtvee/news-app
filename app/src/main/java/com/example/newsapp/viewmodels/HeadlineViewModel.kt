@@ -1,17 +1,16 @@
 package com.example.newsapp.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.newsapp.data.models.Article
-import com.example.newsapp.data.repositories.HeadlineRepository
 import com.example.newsapp.data.repositories.HomeRepository
 import com.example.newsapp.utils.Resource
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.newsapp.utils.SourcePlanning
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HeadlineViewModel @Inject constructor(
-    private val headlineRepository: HeadlineRepository
+    private val homeRepository: HomeRepository,
+    private val sourcePlanning: SourcePlanning
 ) : ViewModel() {
 
     lateinit var businessData: LiveData<Resource<List<Article>>>
@@ -25,7 +24,7 @@ class HeadlineViewModel @Inject constructor(
 
     fun deleteHeadline(tags: List<String>) {
         viewModelScope.launch {
-            _deleteFlag.value = headlineRepository.deleteByTags(tags)
+            _deleteFlag.value = homeRepository.deleteByTags(tags)
         }
     }
 
@@ -34,27 +33,27 @@ class HeadlineViewModel @Inject constructor(
     }
 
     fun fetchBusiness() {
-        businessData = headlineRepository.getBusinessHeadline()
+        businessData = homeRepository.getHeadline(sourcePlanning.businessSources)
             .asLiveData(viewModelScope.coroutineContext)
     }
 
     fun fetchTech() {
-         techData = headlineRepository.getTechHeadline()
+         techData = homeRepository.getHeadline(sourcePlanning.techSources)
             .asLiveData(viewModelScope.coroutineContext)
     }
 
     fun fetchStartup() {
-        startupData = headlineRepository.getStartupHeadline()
+        startupData = homeRepository.getHeadline(sourcePlanning.startup)
             .asLiveData(viewModelScope.coroutineContext)
     }
 
     fun fetchScience() {
-        scienceData = headlineRepository.getScienceHeadline()
+        scienceData = homeRepository.getHeadline(sourcePlanning.scienceSources)
             .asLiveData(viewModelScope.coroutineContext)
     }
 
     fun fetchLife() {
-        lifeData = headlineRepository.getLifeHeadline()
+        lifeData = homeRepository.getHeadline(sourcePlanning.lifeSources)
             .asLiveData(viewModelScope.coroutineContext)
     }
 }

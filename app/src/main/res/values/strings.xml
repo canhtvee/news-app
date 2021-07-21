@@ -2,28 +2,12 @@
     <string name="app_name">NewsApp</string>
     <string name="explore">Explore</string>
     <string name="headline">Headline</string>
-    <string name="following">Following</string>
     <string name="mediator">Mediator</string>
 
-    <string name="wired">Wired</string>
-    <string name="the_wall_street_journal">The Wall Street Journal</string>
-    <string name="the_verge">The Verge</string>
-    <string name="the_next_web">The Next Web</string>
-    <string name="techradar">Tech Radar</string>
-    <string name="techcrunch">tech Crunch</string>
-    <string name="talksport">Talk Sport</string>
-    <string name="recode">Recode</string>
-    <string name="new_scientist">New Scientist</string>
-    <string name="hacker_news">Hacker News</string>
-    <string name="fox_sports"> Fox Sports</string>
-    <string name="fortune">Fortune Magazine</string>
-    <string name="espn">ENSP Mazagine</string>
-    <string name="engadget">Engadget</string>
-    <string name="business_insider">Business Insider</string>
-
-    <string name="webview_clear">Close</string>
     <string name="webview_save">Save</string>
     <string name="webview_share">Share</string>
     <string name="webview_refresh">Refresh</string>
+
+    <string name="outer_item_icon_forward">Forward</string>
 
 </resources>

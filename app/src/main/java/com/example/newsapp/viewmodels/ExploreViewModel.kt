@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExploreViewModel @Inject constructor(
-    val homeRepository: HomeRepository,
+    private val homeRepository: HomeRepository,
     val sourcePlanning: SourcePlanning
 ) : ViewModel() {
 

@@ -1,6 +1,5 @@
 package com.example.newsapp.adapters
 
-import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -21,11 +20,11 @@ class HeadlineBindingAdapter (
     fun bindHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView, swipeRefreshLayout: SwipeRefreshLayout) {
         when (resource) {
             is Resource.Loading -> {
-                Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_LONG).show()
+                Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_SHORT).show()
             }
 
             is Resource.Error -> {
-                Toast.makeText(recyclerView.context, "Error", Toast.LENGTH_LONG).show()
+                Toast.makeText(recyclerView.context, "Error", Toast.LENGTH_SHORT).show()
             }
 
             is Resource.Success -> {

@@ -4,6 +4,6 @@
     <item
         android:id="@+id/iconForward"
         android:icon="@drawable/ic_arrow_forward"
-        android:title="@string/webview_save"
+        android:title="@string/outer_item_icon_forward"
         app:showAsAction="ifRoom"/>
 </menu>

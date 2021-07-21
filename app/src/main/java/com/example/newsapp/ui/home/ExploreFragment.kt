@@ -72,11 +72,11 @@ class ExploreFragment : Fragment() {
         exploreViewModel.exploreData.observe(viewLifecycleOwner, { resource ->
             when (resource) {
                 is Resource.Loading -> {
-                    Toast.makeText(view.context, "Loading...", Toast.LENGTH_LONG).show()
+                    Toast.makeText(view.context, "Loading...", Toast.LENGTH_SHORT).show()
                 }
 
                 is Resource.Error -> {
-                    Toast.makeText(view.context, "Error", Toast.LENGTH_LONG).show()
+                    Toast.makeText(view.context, "Error", Toast.LENGTH_SHORT).show()
                 }
 
                 is Resource.Success -> {

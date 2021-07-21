@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_nav_graph"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_graph"
     app:startDestination="@id/exploreFragment">
 
     <fragment
@@ -16,7 +16,7 @@
         tools:layout="@layout/fragment_headline"
         android:label="fragment_headline" />
     <fragment
-        android:id="@+id/followingFragment"
+        android:id="@+id/mediatorFragment"
         android:name="com.example.newsapp.ui.home.Mediator"
         android:label="fragment_following"
         tools:layout="@layout/fragment_mediator"/>

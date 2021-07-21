@@ -12,7 +12,7 @@
         android:title="@string/headline"/>
 
     <item
-        android:id="@+id/followingFragment"
+        android:id="@+id/mediatorFragment"
         android:icon="@drawable/ic_mediator"
         android:title="@string/mediator"
         />

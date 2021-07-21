@@ -1,8 +1,6 @@
 package com.example.newsapp.di
 
-import com.example.newsapp.adapters.ImageBindingAdapter
 import com.example.newsapp.data.repositories.ExploreTopicRepository
-import com.example.newsapp.data.repositories.HeadlineRepository
 import com.example.newsapp.data.repositories.HomeRepository
 import com.example.newsapp.utils.SourcePlanning
 import com.example.newsapp.viewmodels.ExploreTopicViewModel
@@ -23,17 +21,12 @@ object AppModule {
     @Provides
     fun provideSourcePlanning(): SourcePlanning = SourcePlanning()
 
-    @Provides
-    fun provideImageBindingAdapter(): ImageBindingAdapter = ImageBindingAdapter()
-
     @Singleton
     @Provides
-    fun provideHeadlineViewModel(headlineRepository: HeadlineRepository
-    ): HeadlineViewModel = HeadlineViewModel(headlineRepository)
-
-    @Singleton
-    @Provides
-    fun provideWebViewModel(): WebViewModel = WebViewModel()
+    fun provideHeadlineViewModel(
+        homeRepository: HomeRepository,
+        sourcePlanning: SourcePlanning
+    ): HeadlineViewModel = HeadlineViewModel(homeRepository, sourcePlanning)
 
     @Singleton
     @Provides
@@ -47,4 +40,7 @@ object AppModule {
     fun provideExploreTopicViewModel(exploreTopicRepository: ExploreTopicRepository
     ): ExploreTopicViewModel = ExploreTopicViewModel(exploreTopicRepository)
 
+    @Singleton
+    @Provides
+    fun provideWebViewModel(): WebViewModel = WebViewModel()
 }

@@ -3,14 +3,12 @@ package com.example.newsapp.utils
 import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Interpolator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import kotlin.properties.Delegates
 
 class LinePagerIndicatorDecoration() : ItemDecoration() {
     private val colorActive = 0xFFFFFFFF

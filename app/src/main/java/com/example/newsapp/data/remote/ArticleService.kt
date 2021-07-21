@@ -12,16 +12,8 @@ interface ArticleService {
                                 @Query("apiKey")  apiKey: String,
     ): Response<ApiResponse>
 
-    @GET("top-headlines")
-    suspend fun getNewsByCategory(@Query("country") country: String,
-                                  @Query("category") category: String,
-                                  @Query("apiKey")  apiKey: String,
-    ): Response<ApiResponse>
-
-
     @GET("everything")
     suspend fun getNewsByTag(@Query("q") tag: String,
                              @Query("apiKey")  apiKey: String,
     ): Response<ApiResponse>
-
 }
