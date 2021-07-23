@@ -33,7 +33,7 @@ class ExploreViewModel @Inject constructor(
     }
 
     fun fetchExplore() {
-        exploreData = homeRepository.getTagsHeadline()
+        exploreData = homeRepository.getTagsHeadline(sourcePlanning.tagList)
             .asLiveData(viewModelScope.coroutineContext)
     }
 }

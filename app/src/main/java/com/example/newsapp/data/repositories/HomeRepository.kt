@@ -22,10 +22,10 @@ class HomeRepository @Inject constructor(
         return true
     }
 
-    fun getTagsHeadline() = performGetOperation(
-        getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(sourcePlanning.tagList) },
+    fun getTagsHeadline(tags: List<String>) = performGetOperation(
+        getDataFromRemoteSource = { articleRemoteDataSource.getForMultiTags(tags) },
         saveDataToDatabase = { articleLocalDataSource.insert(it) },
-        getDataFromLocalSource = { articleLocalDataSource.loadByTags(sourcePlanning.tagList) }
+        getDataFromLocalSource = { articleLocalDataSource.loadByTags(tags) }
     ).flowOn(Dispatchers.IO)
 
     fun getHeadline(tags: List<String>): Flow<Resource<List<Article>>> {

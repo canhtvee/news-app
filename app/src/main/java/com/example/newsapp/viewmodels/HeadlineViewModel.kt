@@ -43,7 +43,7 @@ class HeadlineViewModel @Inject constructor(
     }
 
     fun fetchStartup() {
-        startupData = homeRepository.getHeadline(sourcePlanning.startup)
+        startupData = homeRepository.getTagsHeadline(sourcePlanning.startup)
             .asLiveData(viewModelScope.coroutineContext)
     }
 
