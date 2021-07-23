@@ -29,7 +29,7 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.businessRecyclerView)
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
-            headlineViewModel.deleteHeadline(sourcePlanning.businessSources)
+            headlineViewModel.deleteHeadline(headlineViewModel.refreshFlag._businessFlag, sourcePlanning.businessSources)
         }
 
         headlineViewModel.fetchBusiness()
@@ -38,9 +38,9 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
 
-        headlineViewModel.refreshFlag.observe(viewLifecycleOwner, { flag ->
+        headlineViewModel.refreshFlag.businessFlag.observe(viewLifecycleOwner, { flag ->
             if (flag) {
-                headlineViewModel._deleteFlag.value = false
+                headlineViewModel.refreshFlag._businessFlag.value = false
                 headlineViewModel.fetchBusiness()
                 headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
                     resource.toString() // can not be deleted

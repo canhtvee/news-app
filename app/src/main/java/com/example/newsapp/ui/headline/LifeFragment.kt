@@ -29,16 +29,16 @@ class LifeFragment : Fragment(R.layout.fragment_life) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.lifeRecyclerView)
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.life_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
-            headlineViewModel.deleteHeadline(sourcePlanning.lifeSources)
+            headlineViewModel.deleteHeadline(headlineViewModel.refreshFlag._lifeFlag, sourcePlanning.lifeSources)
         }
         headlineViewModel.fetchLife()
         headlineViewModel.lifeData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
-        headlineViewModel.refreshFlag.observe(viewLifecycleOwner, { flag ->
+        headlineViewModel.refreshFlag.lifeFlag.observe(viewLifecycleOwner, { flag ->
             if (flag) {
-                headlineViewModel._deleteFlag.value = false
+                headlineViewModel.refreshFlag._lifeFlag.value = false
                 headlineViewModel.fetchLife()
                 headlineViewModel.lifeData.observe(viewLifecycleOwner, { resource ->
                     resource.toString() // can not be deleted

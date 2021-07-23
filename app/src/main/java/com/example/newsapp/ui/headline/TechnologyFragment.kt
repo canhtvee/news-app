@@ -29,16 +29,16 @@ class TechnologyFragment : Fragment(R.layout.fragment_technology) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.techRecyclerView)
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.tech_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
-            headlineViewModel.deleteHeadline(sourcePlanning.techSources)
+            headlineViewModel.deleteHeadline(headlineViewModel.refreshFlag._techFlag, sourcePlanning.techSources)
         }
         headlineViewModel.fetchTech()
         headlineViewModel.techData.observe(viewLifecycleOwner, { resource ->
             HeadlineBindingAdapter(this, webViewModel)
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
-        headlineViewModel.refreshFlag.observe(viewLifecycleOwner, { flag ->
+        headlineViewModel.refreshFlag.techFlag.observe(viewLifecycleOwner, { flag ->
             if (flag) {
-                headlineViewModel._deleteFlag.value = false
+                headlineViewModel.refreshFlag._techFlag.value = false
                 headlineViewModel.fetchTech()
                 headlineViewModel.techData.observe(viewLifecycleOwner, { resource ->
                     resource.toString() // can not be deleted

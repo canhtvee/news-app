@@ -3,6 +3,7 @@ package com.example.newsapp.viewmodels
 import androidx.lifecycle.*
 import com.example.newsapp.data.models.Article
 import com.example.newsapp.data.repositories.HomeRepository
+import com.example.newsapp.utils.RefreshFlag
 import com.example.newsapp.utils.Resource
 import com.example.newsapp.utils.SourcePlanning
 import kotlinx.coroutines.launch
@@ -19,17 +20,21 @@ class HeadlineViewModel @Inject constructor(
     lateinit var scienceData : LiveData<Resource<List<Article>>>
     lateinit var lifeData    : LiveData<Resource<List<Article>>>
 
-    val _deleteFlag = MutableLiveData<Boolean>()
-    val refreshFlag: LiveData<Boolean> = _deleteFlag
+    val refreshFlag = RefreshFlag()
 
-    fun deleteHeadline(tags: List<String>) {
+    fun deleteHeadline(flag: MutableLiveData<Boolean>, tags: List<String>) {
         viewModelScope.launch {
-            _deleteFlag.value = homeRepository.deleteByTags(tags)
+            flag.value = homeRepository.deleteByTags(tags)
         }
     }
 
     init {
-        _deleteFlag.value = false
+        refreshFlag._businessFlag.value = false
+        refreshFlag._techFlag.value = false
+        refreshFlag._startupFlag.value = false
+        refreshFlag._scienceFlag.value = false
+        refreshFlag._lifeFlag.value = false
+
     }
 
     fun fetchBusiness() {
