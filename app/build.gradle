@@ -43,7 +43,7 @@ android {
                         'src\\main\\res\\drawables\\itemview',
                         'src\\main\\res\\drawables\\common',
                         'src\\main\\res\\drawables\\source-icons',
-                        'src\\main\\res\\drawables\\webview'
+                        'src\\main\\res\\drawables\\webview', 'src\\main\\res\\layouts\\recyclerview'
 
             }
         }
@@ -125,5 +125,8 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha04")
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.20"
+
+    // Shimming effect
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
 }

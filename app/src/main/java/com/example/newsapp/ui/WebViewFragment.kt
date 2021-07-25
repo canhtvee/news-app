@@ -55,7 +55,7 @@ class WebViewFragment : Fragment() {
                 progressBar.progress = newProgress
 
                 if (newProgress >= 70) {
-                    progressBar.visibility = View.INVISIBLE
+                    progressBar.visibility = View.GONE
                     swipeToRefresh.isRefreshing = false
 
                 }
@@ -72,7 +72,7 @@ class WebViewFragment : Fragment() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 progressBar.progress = 100
-                progressBar.visibility = View.INVISIBLE
+                progressBar.visibility = View.GONE
                 swipeToRefresh.isRefreshing = false
             }
         }

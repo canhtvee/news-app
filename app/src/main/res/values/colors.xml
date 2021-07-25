@@ -18,6 +18,7 @@
     <color name="color_on_background">@color/color_on_primary</color>
 
     <color name="background_transparent">#60272727</color>
+    <color name="shimmer_background">#dddddd</color>
 
 </resources>
 

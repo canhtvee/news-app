@@ -1,5 +1,6 @@
 package com.example.newsapp.adapters
 
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -11,13 +12,18 @@ import com.example.newsapp.R
 import com.example.newsapp.data.models.Article
 import com.example.newsapp.utils.Resource
 import com.example.newsapp.viewmodels.WebViewModel
+import com.facebook.shimmer.ShimmerFrameLayout
 
 class HeadlineBindingAdapter (
     val fragment: Fragment,
     val webViewModel: WebViewModel
 ) {
 
-    fun bindHeadline(resource: Resource<List<Article>>, recyclerView: RecyclerView, swipeRefreshLayout: SwipeRefreshLayout) {
+    fun bindHeadline(
+        resource: Resource<List<Article>>,
+        recyclerView: RecyclerView,
+        swipeRefreshLayout: SwipeRefreshLayout,
+    ) {
         when (resource) {
             is Resource.Loading -> {
                 Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_SHORT).show()
@@ -39,6 +45,39 @@ class HeadlineBindingAdapter (
                     }
                     hasFixedSize()
                     addItemDecoration(itemDivider)
+                }
+            }
+        }
+    }
+
+    fun bindHeadlineShimming(
+        resource: Resource<List<Article>>,
+        recyclerView: RecyclerView,
+        swipeRefreshLayout: SwipeRefreshLayout,
+        shimmerViewContainer: ShimmerFrameLayout
+    ) {
+        when (resource) {
+            is Resource.Loading -> {
+                //Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_SHORT).show()
+            }
+
+            is Resource.Error -> {
+                Toast.makeText(recyclerView.context, "Error", Toast.LENGTH_SHORT).show()
+            }
+
+            is Resource.Success -> {
+                shimmerViewContainer.stopShimmerAnimation()
+                shimmerViewContainer.visibility = View.GONE
+                swipeRefreshLayout.isRefreshing = false
+                recyclerView.apply {
+                    visibility = View.VISIBLE
+                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                        .apply { initialPrefetchItemCount = 6 }
+                    adapter = HeadlineRecyclerViewAdapter(resource.data){
+                        onItemClick(it)
+                    }
+                    hasFixedSize()
+                    addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
                 }
             }
         }
