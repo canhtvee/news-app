@@ -62,8 +62,7 @@ class HeadlineBindingAdapter (
     ) {
         when (resource) {
             is Resource.Loading -> {
-                shimmerViewContainer.startShimmerAnimation()
-                //Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_SHORT).show()
+                setActiveView(recyclerView, shimmerViewContainer)
             }
 
             is Resource.Error -> {
@@ -71,12 +70,9 @@ class HeadlineBindingAdapter (
             }
 
             is Resource.Success -> {
-                shimmerViewContainer.stopShimmerAnimation()
-                shimmerViewContainer.visibility = View.GONE
-                swipeRefreshLayout.isRefreshing = false
+                setActiveView(recyclerView, shimmerViewContainer)
                 val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
                 itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
-                recyclerView.visibility = View.VISIBLE
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         .apply { initialPrefetchItemCount = 6 }
@@ -87,6 +83,18 @@ class HeadlineBindingAdapter (
                     addItemDecoration(itemDivider)
                 }
             }
+        }
+    }
+
+    private fun setActiveView(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
+        if (recyclerView.visibility == View.VISIBLE) {
+            recyclerView.visibility = View.GONE
+            shimmerViewContainer.startShimmerAnimation()
+            shimmerViewContainer.visibility = View.VISIBLE
+        } else {
+            recyclerView.visibility = View.VISIBLE
+            shimmerViewContainer.stopShimmerAnimation()
+            shimmerViewContainer.visibility = View.GONE
         }
     }
 
