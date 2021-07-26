@@ -30,6 +30,7 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val shimmerViewContainer = view.findViewById<ShimmerFrameLayout>(R.id.business_shimmer_view_container)
+        shimmerViewContainer.startShimmerAnimation()
         val recyclerView = view.findViewById<RecyclerView>(R.id.businessRecyclerView)
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {

@@ -20,7 +20,7 @@
         <!-- Adding 7 rows of placeholders -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <include layout="@layout/headline_item_view_shimmer_holder" />
             <include layout="@layout/headline_item_view_shimmer_holder" />

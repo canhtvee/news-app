@@ -2,6 +2,7 @@ package com.example.newsapp.adapters
 
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -19,6 +20,7 @@ class HeadlineBindingAdapter (
     val webViewModel: WebViewModel
 ) {
 
+
     fun bindHeadline(
         resource: Resource<List<Article>>,
         recyclerView: RecyclerView,
@@ -35,8 +37,10 @@ class HeadlineBindingAdapter (
 
             is Resource.Success -> {
                 swipeRefreshLayout.isRefreshing = false
+
                 val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
-                itemDivider.setDrawable(fragment.requireContext().getDrawable(R.drawable.item_divider)!!)
+                //itemDivider.setDrawable(fragment.requireContext().getDrawable(R.drawable.item_divider)!!)
+                itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         .apply { initialPrefetchItemCount = 6 }
@@ -70,6 +74,8 @@ class HeadlineBindingAdapter (
                 shimmerViewContainer.stopShimmerAnimation()
                 shimmerViewContainer.visibility = View.GONE
                 swipeRefreshLayout.isRefreshing = false
+                val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
+                itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
                 recyclerView.visibility = View.VISIBLE
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -78,7 +84,7 @@ class HeadlineBindingAdapter (
                         onItemClick(it)
                     }
                     hasFixedSize()
-                    addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+                    addItemDecoration(itemDivider)
                 }
             }
         }
