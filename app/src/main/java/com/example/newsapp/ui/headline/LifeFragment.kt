@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.R
-import com.example.newsapp.adapters.HeadlineBindingAdapter
+import com.example.newsapp.adapters.HeadlineBindingAdapterOld
 import com.example.newsapp.utils.SourcePlanning
 import com.example.newsapp.viewmodels.HeadlineViewModel
 import com.example.newsapp.viewmodels.WebViewModel
@@ -33,7 +33,7 @@ class LifeFragment : Fragment(R.layout.fragment_life) {
         }
         headlineViewModel.fetchLife()
         headlineViewModel.lifeData.observe(viewLifecycleOwner, { resource ->
-            HeadlineBindingAdapter(this, webViewModel)
+            HeadlineBindingAdapterOld(this, webViewModel)
                 .bindHeadline(resource, recyclerView, swipeRefreshLayout)
         })
         headlineViewModel.refreshFlag.lifeFlag.observe(viewLifecycleOwner, { flag ->

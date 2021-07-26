@@ -15,11 +15,10 @@ import com.example.newsapp.utils.Resource
 import com.example.newsapp.viewmodels.WebViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
 
-class HeadlineBindingAdapter (
+class HeadlineBindingAdapterOld (
     val fragment: Fragment,
     val webViewModel: WebViewModel
 ) {
-
 
     fun bindHeadline(
         resource: Resource<List<Article>>,
@@ -39,7 +38,6 @@ class HeadlineBindingAdapter (
                 swipeRefreshLayout.isRefreshing = false
 
                 val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
-                //itemDivider.setDrawable(fragment.requireContext().getDrawable(R.drawable.item_divider)!!)
                 itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
                 recyclerView.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -62,7 +60,7 @@ class HeadlineBindingAdapter (
     ) {
         when (resource) {
             is Resource.Loading -> {
-                setActiveView(recyclerView, shimmerViewContainer)
+                setShimmerViewActive(recyclerView, shimmerViewContainer)
             }
 
             is Resource.Error -> {
@@ -70,7 +68,11 @@ class HeadlineBindingAdapter (
             }
 
             is Resource.Success -> {
-                setActiveView(recyclerView, shimmerViewContainer)
+
+                swipeRefreshLayout.isRefreshing = false
+
+                setRecyclerViewActive(recyclerView, shimmerViewContainer)
+
                 val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
                 itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
                 recyclerView.apply {
@@ -86,16 +88,16 @@ class HeadlineBindingAdapter (
         }
     }
 
-    private fun setActiveView(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
-        if (recyclerView.visibility == View.VISIBLE) {
-            recyclerView.visibility = View.GONE
-            shimmerViewContainer.startShimmerAnimation()
-            shimmerViewContainer.visibility = View.VISIBLE
-        } else {
-            recyclerView.visibility = View.VISIBLE
-            shimmerViewContainer.stopShimmerAnimation()
-            shimmerViewContainer.visibility = View.GONE
-        }
+    fun setShimmerViewActive(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
+        recyclerView.visibility = View.GONE
+        shimmerViewContainer.visibility = View.VISIBLE
+        shimmerViewContainer.startShimmerAnimation()
+    }
+
+    private fun setRecyclerViewActive(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
+        shimmerViewContainer.stopShimmerAnimation()
+        shimmerViewContainer.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
     }
 
     private fun onItemClick(article: Article){
