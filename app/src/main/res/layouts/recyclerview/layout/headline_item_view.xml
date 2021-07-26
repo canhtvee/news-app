@@ -14,7 +14,6 @@
         android:layout_height="96dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="ItemView2"
         android:textColor="?attr/colorOnSurface"
         android:textSize="14sp" />
 

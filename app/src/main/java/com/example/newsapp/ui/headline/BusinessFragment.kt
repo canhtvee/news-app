@@ -26,9 +26,10 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
     @Inject
     lateinit var webViewModel: WebViewModel
 
-    val shimmerViewContainer = requireActivity().findViewById<ShimmerFrameLayout>(R.id.business_shimmer_view_container)
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val shimmerViewContainer = view.findViewById<ShimmerFrameLayout>(R.id.business_shimmer_view_container)
         val recyclerView = view.findViewById<RecyclerView>(R.id.businessRecyclerView)
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
@@ -54,11 +55,12 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
 
     override fun onResume() {
         super.onResume()
+        val shimmerViewContainer = requireView().findViewById<ShimmerFrameLayout>(R.id.business_shimmer_view_container)
         shimmerViewContainer.startShimmerAnimation()
     }
-
-    override fun onPause() {
-        shimmerViewContainer.stopShimmerAnimation()
-        super.onPause()
-    }
+//    override fun onPause() {
+//        val shimmerViewContainer = requireActivity().findViewById<ShimmerFrameLayout>(R.id.business_shimmer_view_container)
+//        shimmerViewContainer.stopShimmerAnimation()
+//        super.onPause()
+//    }
 }

@@ -58,6 +58,7 @@ class HeadlineBindingAdapter (
     ) {
         when (resource) {
             is Resource.Loading -> {
+                shimmerViewContainer.startShimmerAnimation()
                 //Toast.makeText(recyclerView.context, "Loading...", Toast.LENGTH_SHORT).show()
             }
 
@@ -69,8 +70,8 @@ class HeadlineBindingAdapter (
                 shimmerViewContainer.stopShimmerAnimation()
                 shimmerViewContainer.visibility = View.GONE
                 swipeRefreshLayout.isRefreshing = false
+                recyclerView.visibility = View.VISIBLE
                 recyclerView.apply {
-                    visibility = View.VISIBLE
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         .apply { initialPrefetchItemCount = 6 }
                     adapter = HeadlineRecyclerViewAdapter(resource.data){

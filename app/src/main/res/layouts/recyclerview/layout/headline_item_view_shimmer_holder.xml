@@ -6,14 +6,32 @@
     android:layout_height="114dp"
     android:padding="8dp">
 
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:background="@color/shimmer_background"/>
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_margin="4dp"
+            android:textSize="14sp"
+            android:background="@color/shimmer_background"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_margin="4dp"
+            android:textSize="14sp"
+            android:background="@color/shimmer_background"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View
         android:layout_width="80dp"
