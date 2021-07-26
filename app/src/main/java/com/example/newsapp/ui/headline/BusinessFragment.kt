@@ -30,10 +30,13 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val shimmerViewContainer = view.findViewById<ShimmerFrameLayout>(R.id.business_shimmer_view_container)
         val recyclerView = view.findViewById<RecyclerView>(R.id.businessRecyclerView)
+        shimmerViewContainer.visibility = View.VISIBLE
+        shimmerViewContainer.startShimmerAnimation()
+        recyclerView.visibility = View.GONE
+
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
 
         swipeRefreshLayout.setOnRefreshListener {
-
             headlineViewModel.deleteHeadline(headlineViewModel.refreshFlag._businessFlag, sourcePlanning.businessSources)
         }
 

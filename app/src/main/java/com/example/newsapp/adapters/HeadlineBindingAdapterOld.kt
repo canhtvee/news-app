@@ -69,9 +69,13 @@ class HeadlineBindingAdapterOld (
 
             is Resource.Success -> {
 
-                swipeRefreshLayout.isRefreshing = false
+                if (resource.data.toString() == "[]") {
+                    setShimmerViewActive(recyclerView, shimmerViewContainer)
+                } else {
+                    setRecyclerViewActive(recyclerView, shimmerViewContainer)
+                }
 
-                setRecyclerViewActive(recyclerView, shimmerViewContainer)
+                swipeRefreshLayout.isRefreshing = false
 
                 val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
                 itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
@@ -88,7 +92,7 @@ class HeadlineBindingAdapterOld (
         }
     }
 
-    fun setShimmerViewActive(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
+    private fun setShimmerViewActive(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
         recyclerView.visibility = View.GONE
         shimmerViewContainer.visibility = View.VISIBLE
         shimmerViewContainer.startShimmerAnimation()
