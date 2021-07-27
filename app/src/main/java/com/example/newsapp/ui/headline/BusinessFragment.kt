@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.R
-import com.example.newsapp.adapters.HeadlineBindingAdapterOld
+import com.example.newsapp.adapters.HeadlineBindingAdapterNew
 import com.example.newsapp.utils.SourcePlanning
 import com.example.newsapp.viewmodels.HeadlineViewModel
 import com.example.newsapp.viewmodels.WebViewModel
@@ -26,24 +26,26 @@ class BusinessFragment : Fragment(R.layout.fragment_business) {
     @Inject
     lateinit var webViewModel: WebViewModel
 
+    @Inject
+    lateinit var headlineBindingAdapter: HeadlineBindingAdapterNew
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val shimmerViewContainer = view.findViewById<ShimmerFrameLayout>(R.id.business_shimmer_view_container)
         val recyclerView = view.findViewById<RecyclerView>(R.id.businessRecyclerView)
-        shimmerViewContainer.visibility = View.VISIBLE
-        shimmerViewContainer.startShimmerAnimation()
-        recyclerView.visibility = View.GONE
+        headlineBindingAdapter.setShimmerViewActive(recyclerView, shimmerViewContainer)
 
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.business_layout_swipe_to_refresh)
-
         swipeRefreshLayout.setOnRefreshListener {
-            headlineViewModel.deleteHeadline(headlineViewModel.refreshFlag._businessFlag, sourcePlanning.businessSources)
+            headlineViewModel.deleteHeadline(
+                headlineViewModel.refreshFlag._businessFlag, sourcePlanning.businessSources
+            )
         }
 
         headlineViewModel.fetchBusiness()
         headlineViewModel.businessData.observe(viewLifecycleOwner, { resource ->
-            HeadlineBindingAdapterOld(this, webViewModel)
-                .bindHeadlineShimming(resource, recyclerView, swipeRefreshLayout, shimmerViewContainer)
+            headlineBindingAdapter.bindHeadlineShimming(
+                resource, recyclerView, swipeRefreshLayout, shimmerViewContainer, this
+            )
         })
 
         headlineViewModel.refreshFlag.businessFlag.observe(viewLifecycleOwner, { flag ->

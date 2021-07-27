@@ -7,10 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".ui.headline.LifeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lifeRecyclerView"
-        android:layout_height="match_parent"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/life_shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Adding 8 rows of placeholders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <include layout="@layout/headline_item_view_shimmer_holder" />
+                <include layout="@layout/headline_item_view_shimmer_holder" />
+                <include layout="@layout/headline_item_view_shimmer_holder" />
+                <include layout="@layout/headline_item_view_shimmer_holder" />
+                <include layout="@layout/headline_item_view_shimmer_holder" />
+                <include layout="@layout/headline_item_view_shimmer_holder" />
+                <include layout="@layout/headline_item_view_shimmer_holder" />
+                <include layout="@layout/headline_item_view_shimmer_holder" />
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lifeRecyclerView"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

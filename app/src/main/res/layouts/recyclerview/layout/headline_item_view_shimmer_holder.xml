@@ -18,7 +18,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            android:layout_margin="4dp"
+            android:layout_margin="2dp"
             android:textSize="14sp"
             android:background="@color/shimmer_background"/>
 
@@ -27,7 +27,7 @@
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            android:layout_margin="4dp"
+            android:layout_margin="2dp"
             android:textSize="14sp"
             android:background="@color/shimmer_background"/>
 

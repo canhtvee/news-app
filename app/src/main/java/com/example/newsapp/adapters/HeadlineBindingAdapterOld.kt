@@ -19,7 +19,6 @@ class HeadlineBindingAdapterOld (
     val fragment: Fragment,
     val webViewModel: WebViewModel
 ) {
-
     fun bindHeadline(
         resource: Resource<List<Article>>,
         recyclerView: RecyclerView,
@@ -36,7 +35,6 @@ class HeadlineBindingAdapterOld (
 
             is Resource.Success -> {
                 swipeRefreshLayout.isRefreshing = false
-
                 val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
                 itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
                 recyclerView.apply {
@@ -50,58 +48,6 @@ class HeadlineBindingAdapterOld (
                 }
             }
         }
-    }
-
-    fun bindHeadlineShimming(
-        resource: Resource<List<Article>>,
-        recyclerView: RecyclerView,
-        swipeRefreshLayout: SwipeRefreshLayout,
-        shimmerViewContainer: ShimmerFrameLayout
-    ) {
-        when (resource) {
-            is Resource.Loading -> {
-                setShimmerViewActive(recyclerView, shimmerViewContainer)
-            }
-
-            is Resource.Error -> {
-                Toast.makeText(recyclerView.context, "Error", Toast.LENGTH_SHORT).show()
-            }
-
-            is Resource.Success -> {
-
-                if (resource.data.toString() == "[]") {
-                    setShimmerViewActive(recyclerView, shimmerViewContainer)
-                } else {
-                    setRecyclerViewActive(recyclerView, shimmerViewContainer)
-                }
-
-                swipeRefreshLayout.isRefreshing = false
-
-                val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
-                itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
-                recyclerView.apply {
-                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                        .apply { initialPrefetchItemCount = 6 }
-                    adapter = HeadlineRecyclerViewAdapter(resource.data){
-                        onItemClick(it)
-                    }
-                    hasFixedSize()
-                    addItemDecoration(itemDivider)
-                }
-            }
-        }
-    }
-
-    private fun setShimmerViewActive(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
-        recyclerView.visibility = View.GONE
-        shimmerViewContainer.visibility = View.VISIBLE
-        shimmerViewContainer.startShimmerAnimation()
-    }
-
-    private fun setRecyclerViewActive(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
-        shimmerViewContainer.stopShimmerAnimation()
-        shimmerViewContainer.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
     }
 
     private fun onItemClick(article: Article){
