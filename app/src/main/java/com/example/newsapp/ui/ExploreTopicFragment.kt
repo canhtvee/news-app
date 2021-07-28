@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
+import com.example.newsapp.adapters.HeadlineBindingAdapter
 import com.example.newsapp.adapters.HeadlineRecyclerViewAdapter
 import com.example.newsapp.data.models.Article
 import com.example.newsapp.utils.Resource
@@ -45,7 +47,7 @@ class ExploreTopicFragment: Fragment(R.layout.fragment_explore_topic) {
 
                 is Resource.Success -> {
                     val itemDivider = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
-                    itemDivider.setDrawable(requireContext().getDrawable(R.drawable.item_divider)!!)
+                    itemDivider.setDrawable(AppCompatResources.getDrawable(recyclerView.context, R.drawable.item_divider)!!)
                     recyclerView.apply {
                         layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             .apply { initialPrefetchItemCount = 6 }

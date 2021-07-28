@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.R
-import com.example.newsapp.adapters.HeadlineBindingAdapterNew
+import com.example.newsapp.adapters.HeadlineBindingAdapter
 import com.example.newsapp.utils.SourcePlanning
 import com.example.newsapp.viewmodels.HeadlineViewModel
 import com.example.newsapp.viewmodels.WebViewModel
@@ -27,7 +27,7 @@ class StartupFragment : Fragment(R.layout.fragment_startup) {
     lateinit var webViewModel: WebViewModel
 
     @Inject
-    lateinit var headlineBindingAdapter: HeadlineBindingAdapterNew
+    lateinit var headlineBindingAdapter: HeadlineBindingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val shimmerViewContainer = view.findViewById<ShimmerFrameLayout>(R.id.startup_shimmer_view_container)
@@ -52,7 +52,7 @@ class StartupFragment : Fragment(R.layout.fragment_startup) {
             if (flag) {
                 headlineViewModel.refreshFlag._startupFlag.value = false
                 headlineViewModel.fetchStartup()
-                headlineViewModel.startupData.observe(viewLifecycleOwner, { resource ->
+                headlineViewModel.startupData.observe(viewLifecycleOwner, {
                 })
             }
         })

@@ -52,7 +52,7 @@ class TechnologyFragment : Fragment(R.layout.fragment_technology) {
             if (flag) {
                 headlineViewModel.refreshFlag._techFlag.value = false
                 headlineViewModel.fetchTech()
-                headlineViewModel.techData.observe(viewLifecycleOwner, { resource ->
+                headlineViewModel.techData.observe(viewLifecycleOwner, {
                 })
             }
         })

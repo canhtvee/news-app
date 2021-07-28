@@ -52,7 +52,7 @@ class ScienceFragment : Fragment(R.layout.fragment_science) {
             if (flag) {
                 headlineViewModel.refreshFlag._scienceFlag.value = false
                 headlineViewModel.fetchScience()
-                headlineViewModel.scienceData.observe(viewLifecycleOwner, { resource ->
+                headlineViewModel.scienceData.observe(viewLifecycleOwner, {
                 })
             }
         })

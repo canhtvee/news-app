@@ -24,6 +24,7 @@ import com.example.newsapp.viewmodels.ExploreTopicViewModel
 import com.example.newsapp.viewmodels.ExploreViewModel
 import com.example.newsapp.viewmodels.HeadlineViewModel
 import com.example.newsapp.viewmodels.WebViewModel
+import com.facebook.shimmer.ShimmerFrameLayout
 import dagger.hilt.android.AndroidEntryPoint
 import javax.annotation.meta.When
 import javax.inject.Inject
@@ -52,6 +53,10 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
         toolbarTitle.text = resources.getString(R.string.explore)
+
+        val shimmerViewContainer = view.findViewById<ShimmerFrameLayout>(R.id.explore_shimmer_view_container)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.exploreRecyclerView)
+
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.explore_layout_swipe_to_refresh)
         swipeRefreshLayout.setOnRefreshListener {
             exploreViewModel.deleteExplore()
@@ -61,18 +66,16 @@ class ExploreFragment : Fragment() {
             if (flag) {
                 exploreViewModel._deleteFlag.value = false
                 exploreViewModel.fetchExplore()
-                exploreViewModel.exploreData.observe(viewLifecycleOwner, { resource ->
-                    resource.toString() // can not be deleted
+                exploreViewModel.exploreData.observe(viewLifecycleOwner, {
                 })
             }
         })
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.exploreRecyclerView)
         exploreViewModel.fetchExplore()
         exploreViewModel.exploreData.observe(viewLifecycleOwner, { resource ->
             when (resource) {
                 is Resource.Loading -> {
-                    Toast.makeText(view.context, "Loading...", Toast.LENGTH_SHORT).show()
+                    setShimmerViewActive(recyclerView, shimmerViewContainer)
                 }
 
                 is Resource.Error -> {
@@ -81,6 +84,13 @@ class ExploreFragment : Fragment() {
 
                 is Resource.Success -> {
                     swipeRefreshLayout.isRefreshing = false
+
+                    if (resource.data.toString() == "[]") {
+                        setShimmerViewActive(recyclerView, shimmerViewContainer)
+                    } else {
+                        setRecyclerViewActive(recyclerView, shimmerViewContainer)
+                    }
+
                     recyclerView.apply {
                         layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             .apply { initialPrefetchItemCount = 4 }
@@ -116,4 +126,17 @@ class ExploreFragment : Fragment() {
         val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
         mainNavController.navigate(R.id.action_global_to_webViewFragment)
     }
+
+    private fun setShimmerViewActive(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
+        recyclerView.visibility = View.GONE
+        shimmerViewContainer.visibility = View.VISIBLE
+        shimmerViewContainer.startShimmerAnimation()
+    }
+
+    private fun setRecyclerViewActive(recyclerView: RecyclerView, shimmerViewContainer: ShimmerFrameLayout) {
+        shimmerViewContainer.stopShimmerAnimation()
+        shimmerViewContainer.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
+    }
+
 }

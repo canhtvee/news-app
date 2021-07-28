@@ -1,12 +1,6 @@
 package com.example.newsapp.di
 
-import android.app.Activity
-import androidx.core.app.ActivityCompat
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import com.example.newsapp.R
-import com.example.newsapp.adapters.HeadlineBindingAdapterNew
-import com.example.newsapp.adapters.HeadlineBindingAdapterOld
+import com.example.newsapp.adapters.HeadlineBindingAdapter
 import com.example.newsapp.data.repositories.ExploreTopicRepository
 import com.example.newsapp.data.repositories.HomeRepository
 import com.example.newsapp.utils.SourcePlanning
@@ -54,6 +48,6 @@ object AppModule {
     @Singleton
     @Provides
     fun provideHeadlineBindingAdapterNew(webViewModel: WebViewModel
-    ): HeadlineBindingAdapterNew = HeadlineBindingAdapterNew(webViewModel)
+    ): HeadlineBindingAdapter = HeadlineBindingAdapter(webViewModel)
 
 }
