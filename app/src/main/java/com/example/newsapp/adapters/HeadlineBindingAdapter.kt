@@ -16,7 +16,7 @@ import com.example.newsapp.viewmodels.WebViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
 import javax.inject.Inject
 
-class HeadlineBindingAdapterNew @Inject constructor(
+class HeadlineBindingAdapter @Inject constructor(
     val webViewModel: WebViewModel
 ) {
     fun bindHeadlineShimming(
