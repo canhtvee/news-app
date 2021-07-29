@@ -3,14 +3,13 @@ package com.example.newsapp.ui
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newsapp.R
@@ -86,6 +85,35 @@ class WebViewFragment : Fragment() {
         }
         toolbar.setNavigationOnClickListener {
             mainNavController.popBackStack()
+        }
+
+        webView.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (webView.canGoBack()) {
+                        webView.goBack()
+                        return@setOnKeyListener true
+                    }
+                }
+            }
+            return@setOnKeyListener false
+        }
+
+        toolbar.setOnMenuItemClickListener { menu ->
+            when (menu.itemId) {
+                R.id.webIconSave -> {
+                    Toast.makeText(context, "Icon Save", Toast.LENGTH_SHORT).show()
+                    return@setOnMenuItemClickListener true
+                }
+                R.id.webIconShare -> {
+                    Toast.makeText(context, "Icon Share", Toast.LENGTH_SHORT).show()
+                    return@setOnMenuItemClickListener true
+                }
+                else -> {
+                    webView.reload()
+                    return@setOnMenuItemClickListener true
+                }
+            }
         }
     }
 }
