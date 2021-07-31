@@ -87,7 +87,7 @@ class WebViewFragment : Fragment() {
             mainNavController.popBackStack()
         }
 
-        webView.setOnKeyListener { v, keyCode, event ->
+        webView.setOnKeyListener { _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     if (webView.canGoBack()) {
@@ -102,11 +102,7 @@ class WebViewFragment : Fragment() {
         toolbar.setOnMenuItemClickListener { menu ->
             when (menu.itemId) {
                 R.id.webIconSave -> {
-                    Toast.makeText(context, "Icon Save", Toast.LENGTH_SHORT).show()
-                    return@setOnMenuItemClickListener true
-                }
-                R.id.webIconShare -> {
-                    Toast.makeText(context, "Icon Share", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Article Saved", Toast.LENGTH_SHORT).show()
                     return@setOnMenuItemClickListener true
                 }
                 else -> {

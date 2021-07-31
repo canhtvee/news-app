@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources >
 
     <color name="color_primary">#FFFFFFFF</color>
     <color name="color_primary_variant">#888888</color>
@@ -19,6 +19,7 @@
 
     <color name="background_transparent">#60272727</color>
     <color name="shimmer_background">#dddddd</color>
+    <color name="ic_launcher_background">#4494d4</color>
 
 </resources>
 

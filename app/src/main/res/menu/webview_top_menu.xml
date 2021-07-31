@@ -9,12 +9,6 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/webIconShare"
-        android:icon="@drawable/ic_share"
-        android:title="@string/webview_share"
-        app:showAsAction="ifRoom"
-        />
-    <item
         android:id="@+id/webIconRefresh"
         android:icon="@drawable/ic_refresh"
         android:title="@string/webview_refresh"
