@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_web_view.xml" value="0.25" />
-        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/menu/webview_top_menu.xml" value="0.11041666666666666" />
-        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16574074074074074" />
-        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.16574074074074074" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_life.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_science.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_startup.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_technology.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/activity_main.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_explore_topic.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_headline.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_mediator.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_web_view.xml" value="0.228125" />
+        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/headline_item_view.xml" value="0.228125" />
       </map>
     </option>
   </component>

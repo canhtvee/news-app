@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.example.newsapp.ui.home.ExploreFragment"
+        android:name="com.canhtvee.newsapp.ui.home.ExploreFragment"
         tools:layout="@layout/fragment_explore"
         android:label="fragment_explore" />
     <fragment
         android:id="@+id/headlineFragment"
-        android:name="com.example.newsapp.ui.home.HeadlineFragment"
+        android:name="com.canhtvee.newsapp.ui.home.HeadlineFragment"
         tools:layout="@layout/fragment_headline"
         android:label="fragment_headline" />
     <fragment
         android:id="@+id/mediatorFragment"
-        android:name="com.example.newsapp.ui.home.Mediator"
+        android:name="com.canhtvee.newsapp.ui.home.Mediator"
         android:label="fragment_following"
         tools:layout="@layout/fragment_mediator"/>
 

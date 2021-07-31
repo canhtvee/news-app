@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.newsapp.ui.HomeFragment"
+        android:name="com.canhtvee.newsapp.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home"
         >
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="com.example.newsapp.ui.WebViewFragment"
+        android:name="com.canhtvee.newsapp.ui.WebViewFragment"
         android:label="fragment_web_view"
         tools:layout="@layout/fragment_web_view" >
         <action
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/exploreTopicFragment"
-        android:name="com.example.newsapp.ui.ExploreTopicFragment"
+        android:name="com.canhtvee.newsapp.ui.ExploreTopicFragment"
         android:label="fragment_explore_topic"
         tools:layout="@layout/fragment_explore_topic" >
         <action
