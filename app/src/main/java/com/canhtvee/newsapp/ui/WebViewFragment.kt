@@ -83,9 +83,6 @@ class WebViewFragment : Fragment() {
         swipeToRefresh.setOnRefreshListener {
             webView.reload()
         }
-        toolbar.setNavigationOnClickListener {
-            mainNavController.popBackStack()
-        }
 
         webView.setOnKeyListener { _, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN) {
@@ -99,17 +96,15 @@ class WebViewFragment : Fragment() {
             return@setOnKeyListener false
         }
 
+        toolbar.setNavigationOnClickListener {
+            mainNavController.popBackStack()
+        }
+
         toolbar.setOnMenuItemClickListener { menu ->
-            when (menu.itemId) {
-                R.id.webIconSave -> {
-                    Toast.makeText(context, "Article Saved", Toast.LENGTH_SHORT).show()
-                    return@setOnMenuItemClickListener true
-                }
-                else -> {
-                    webView.reload()
-                    return@setOnMenuItemClickListener true
-                }
+            if (menu.itemId == R.id.webIconRefresh) {
+                webView.reload()
             }
+            return@setOnMenuItemClickListener true
         }
     }
 }

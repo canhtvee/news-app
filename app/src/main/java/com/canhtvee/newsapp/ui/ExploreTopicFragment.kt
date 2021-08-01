@@ -16,6 +16,7 @@ import com.canhtvee.newsapp.data.models.Article
 import com.canhtvee.newsapp.utils.Resource
 import com.canhtvee.newsapp.viewmodels.ExploreTopicViewModel
 import com.canhtvee.newsapp.viewmodels.WebViewModel
+import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -29,11 +30,16 @@ class ExploreTopicFragment: Fragment(R.layout.fragment_explore_topic) {
     lateinit var webViewModel: WebViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val mainNavController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_container)
         val toolbarTitle = view.findViewById<TextView>(R.id.toolbarTitle)
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.appToolbar)
+        toolbar.navigationIcon = AppCompatResources.getDrawable(toolbar.context, R.drawable.ic_backward)
+        toolbar.setNavigationOnClickListener {
+            mainNavController.popBackStack()
+        }
         toolbarTitle.text = exploreTopicViewModel.tag
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.exploreTopicRecyclerView)
-
         exploreTopicViewModel.topicData.observe(viewLifecycleOwner,  { resource ->
             when (resource) {
                 is Resource.Loading -> {

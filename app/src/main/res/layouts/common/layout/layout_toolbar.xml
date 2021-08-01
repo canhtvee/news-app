@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.appbar.MaterialToolbar android:layout_width="match_parent"
+<com.google.android.material.appbar.MaterialToolbar
+    android:id="@+id/appToolbar"
+    android:layout_width="match_parent"
     android:layout_height="40dp"
     style="@style/MyTheme.Toolbar"
     app:layout_scrollFlags="scroll|enterAlways|snap"
-    app:navigationIcon="@drawable/ic_search"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 

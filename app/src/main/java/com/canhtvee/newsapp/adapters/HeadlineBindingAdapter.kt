@@ -33,6 +33,7 @@ class HeadlineBindingAdapter @Inject constructor(
 
             is Resource.Error -> {
                 Toast.makeText(recyclerView.context, "Error", Toast.LENGTH_SHORT).show()
+                setRecyclerViewActive(recyclerView, shimmerViewContainer)
             }
 
             is Resource.Success -> {

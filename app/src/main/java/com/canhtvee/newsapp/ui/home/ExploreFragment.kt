@@ -73,6 +73,7 @@ class ExploreFragment : Fragment() {
 
                 is Resource.Error -> {
                     Toast.makeText(view.context, "Error", Toast.LENGTH_SHORT).show()
+                    setRecyclerViewActive(recyclerView, shimmerViewContainer)
                 }
 
                 is Resource.Success -> {

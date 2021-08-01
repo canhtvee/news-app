@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/webIconSave"
-        android:icon="@drawable/ic_save"
-        android:title="@string/webview_save"
-        app:showAsAction="ifRoom"/>
-
-    <item
         android:id="@+id/webIconRefresh"
         android:icon="@drawable/ic_refresh"
         android:title="@string/webview_refresh"
