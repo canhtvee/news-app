@@ -50,7 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
-                android:paddingTop="8dp"
                 />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
