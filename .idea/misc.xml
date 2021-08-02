@@ -3,24 +3,50 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/common/drawable/ic_backward.xml" value="0.2851851851851852" />
-        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/common/drawable/ic_search.xml" value="0.2851851851851852" />
-        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/itemview/drawable/item_divider.xml" value="0.2851851851851852" />
-        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/common/layout/layout_appbar.xml" value="0.21195652173913043" />
-        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/common/layout/layout_toolbar.xml" value="0.1334853090172239" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/bottom-nav/drawable/ic_headline.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/bottom-nav/drawable/ic_mediator.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/common/drawable/ic_backward.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/itemview/drawable/ic_arrow_forward.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/itemview/drawable/ic_image_loading.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/itemview/drawable/ic_image_loading_error.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/itemview/drawable/item_divider.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/webview/drawable/ic_clear.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/drawables/webview/drawable/ic_refresh.xml" value="0.23385416666666667" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layout/fragment_blank.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/common/layout/layout_appbar.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/common/layout/layout_appbar_progressbar.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/common/layout/layout_toolbar.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_business.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_life.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_science.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_startup.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_technology.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/activity_main.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_explore.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_explore_topic.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_headline.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_home.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_mediator.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_web_view.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/headline_item_view.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/headline_item_view_shimmer_holder.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/inner_item_view.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/outer_item_view.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/outer_item_view_shimmer_holder.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/source_item_view.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/menu/outer_item_view_menu.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Canh/AndroidStudioProjects/NewsApp/app/src/main/res/menu/webview_top_menu.xml" value="0.21770833333333334" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_life.xml" value="0.228125" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_science.xml" value="0.228125" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_startup.xml" value="0.228125" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/headline/layout/fragment_technology.xml" value="0.228125" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/activity_main.xml" value="0.228125" />
-        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_explore.xml" value="0.1334853090172239" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_explore_topic.xml" value="0.228125" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_headline.xml" value="0.228125" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_mediator.xml" value="0.228125" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/main/layout/fragment_web_view.xml" value="0.228125" />
         <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/headline_item_view.xml" value="0.228125" />
-        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/layouts/recyclerview/layout/outer_item_view_shimmer_holder.xml" value="0.1334853090172239" />
-        <entry key="..\:/Users/canht/AndroidStudioProjects/NewsApp/app/src/main/res/menu/webview_top_menu.xml" value="0.24259259259259258" />
       </map>
     </option>
   </component>

@@ -19,7 +19,6 @@
         android:padding="8dp"
         android:background="@color/background_transparent"
         android:textColor="?attr/colorPrimary"
-        android:text="Inner View"
         android:textSize="20sp"/>
 
 </FrameLayout>

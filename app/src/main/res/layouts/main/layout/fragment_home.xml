@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.HomeFragment">
+    tools:context="com.canhtv.ee.newsapp.ui.HomeFragment">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/home_nav_host_fragment_container"

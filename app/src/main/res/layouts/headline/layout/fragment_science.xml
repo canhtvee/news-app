@@ -5,7 +5,7 @@
     android:id="@+id/science_layout_swipe_to_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.headline.ScienceFragment">
+    tools:context="com.canhtv.ee.newsapp.ui.headline.ScienceFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
