@@ -83,6 +83,15 @@
         <item name="android:elevation">0dp</item>
     </style>
 
+    <style name="MyTheme.RecyclerViewToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="titleTextAppearance">@style/MyTheme.RecyclerViewToolbar.TextAppearance</item>
+        <item name="itemIconSize">40dp</item>
+    </style>
+
+    <style name="MyTheme.RecyclerViewToolbar.TextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="MyTheme.WebViewToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="navigationIconTint">@color/color_primary</item>
         <item name="android:backgroundTint">@color/color_on_primary</item>

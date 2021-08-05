@@ -28,6 +28,7 @@
             android:layout_height="40dp"
             app:titleTextColor="@color/color_on_primary"
             app:menu="@menu/outer_item_view_menu"
+            style="@style/MyTheme.RecyclerViewToolbar"
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
