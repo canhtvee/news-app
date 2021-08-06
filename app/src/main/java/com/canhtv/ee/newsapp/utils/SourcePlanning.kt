@@ -7,7 +7,7 @@ data class SourcePlanning(
     ),
 
     val techSources: List<String> = listOf<String>(
-//        "engadget",
+        "engadget",
 //        "hacker-news",
 //        "recode",
         "techcrunch",
@@ -18,10 +18,10 @@ data class SourcePlanning(
         ),
 
     val businessSources: List<String> = listOf<String>(
-        "business-insider",
+//        "business-insider",
         //"australian-financial-review",
         //"business-insider-uk",
-        //"fortune",
+        "fortune",
         "the-wall-street-journal",
     ),
 
@@ -39,7 +39,7 @@ data class SourcePlanning(
     val lifeSources: List<String> = listOf(
 //        "the-lad-bible",
 //        "talksport",
-//        "bbc-sport",
+        "bbc-sport",
 //        "bleacher-report",
         "espn",
 //        "espn-cric-info",
